@@ -136,7 +136,8 @@ Optional checks (inside container): It's important to ensure FLUKA environments 
 docker exec -it autofluka bash -lc 'ls -l /usr/local/fluka/bin/fluka ; /usr/local/fluka/bin/fluka -h | head -n 3 ; echo FLUKADATA=$FLUKADATA'
 ```
 Notes:
-- `RFLUKA_BIN` can be `/usr/local/fluka/bin/fluka` or `/usr/local/fluka/bin/rfluka` depending on your FLUKA build.
+- Replace `\path\to\some\local\directory` or `/path/to/some/local/directory` to an actual directory on your PC. 
+-  `RFLUKA_BIN` can be `/usr/local/fluka/bin/fluka` or `/usr/local/fluka/bin/rfluka` depending on your FLUKA build.
 - Ensure you mount the entire `/usr/local/fluka` directory (read-only is fine); do not mount only `bin/`.
 - If mounting from PowerShell to a WSL path, use the UNC form: `\\wsl$\Ubuntu\usr\local\fluka:/usr/local/fluka:ro`.
 
