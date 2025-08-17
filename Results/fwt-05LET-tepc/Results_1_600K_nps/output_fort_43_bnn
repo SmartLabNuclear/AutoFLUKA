@@ -1,0 +1,14 @@
+1
+   Region    binning n.   1  "Enrgy_1   " , generalized particle n.  208
+          1 bins corresponding to the region sets:
+      from region     4 to region     4 in step of     1 regions, or
+      from region     0 to region     0 in step of     1 regions, or
+      from region     0 to region     0 in step of     1 regions
+      Data follow in an array A(ir), format (1(5x,1p,10(1x,e11.4)))
+
+      accurate deposition along the tracks requested
+       1.4781E-07
+
+      Percentage errors follow in an array A(ir), format (1(5x,1p,10(1x,e11.4)))
+
+       1.0305E+00

@@ -1,0 +1,29 @@
+=============================
+Query: General Case
+=============================
+Please execute the following workflow chronologically from start to finish.
+1. In the working directory, read and modify the FLUKA input file "example_template.inp" using parameters from "parameters.csv" in the same directory.
+2. Create 5 FLUKA input copies with the prefix "example" and store them in the subdirectory "Results" inside the working directory.
+3. After all input files have been created, run FLUKA in that subdirectory and decrypt all data from output files ending in "_fort.xx", where xx is any number from 17 through 99.
+4. Process the resulting data from files ending in "_sum.lis" and "_tab.lis" and save results as "fluka_data.json". 
+5. Extract the [Average Uncertainty] from the "output_fort_46_tab.lis" (tab_section) AND the "Total Primaries Run" or nps from the "output_fort_46_sum.lis" (sum_section) of the first detector from this "fluka_data.json" data. If this Average Uncertainty is less than 50%, GO TO step 8. Otherwise, GO TO step 6.
+6. Given that the Average Uncertainty is inversely proportional to the square root of the nps, what value of nps (rounded to the next 100000th) is needed to get an uncertainty less than 50 %?.
+7. Update "parameters.csv" with this new nps. Then REPEAT steps 1–4, SKIP steps 5-7, and CONTINUE from step 8.
+8. Plot the data from the resulting [fluka_data.json] file with the following specifications: [plot_error_bars=False, plot_blocks=False, log_scale=False, semilogx=True, semilogy=False] and SAVE the results as 'jpeg' images in the same directory. When you have completed the workflow, summarize and exit.
+
+=============================
+Query: Microdsimetry
+=============================
+Please execute the following workflow chronologically from steps 1 through 9.
+
+1. In the working directory, read and modify the FLUKA input file "input_template_fwt_tepc.inp" using parameters from "parameters.csv" in the same directory.
+2. Create 5 FLUKA input copies with the prefix "fwt_example" and store them in the subdirectory "Results" inside the working directory.
+3. After all input files have been created, run FLUKA in that subdirectory and decrypt all data from output files ending in "_fort.xx", where xx is any number from 17 through 99.
+4. Process the resulting data from files ending in "_sum.lis" and "_tab.lis" and save results as "fluka_data.json". From this JSON extract:
+   - Average Uncertainty from "output_fort_17_tab.lis" (tab_section)
+   - Total Primaries Run (nps) from "output_fort_41_sum.lis" (sum_section) of the first detector
+5. If the Average Uncertainty is less than 5%, GO TO step 8. Otherwise, GO TO step 6.
+6. Because Average Uncertainty is inversely proportional to the square root of nps, compute the nps required to achieve uncertainty < 5%, rounding up to the next 100000.
+7. Update "parameters.csv" with this new nps. Then REPEAT steps 1–4, SKIP step 5, and CONTINUE from step 8.
+8. Load "fluka_data.json", select only the "output_fort_17_tab.lis" data, perform a logarithmic rebinning, and save the rebinned data as "tepc_log_data.json".
+9. Load "tepc_log_data.json", compute and plot the microdosimetric spectra, then summarize what you did and FINISH.

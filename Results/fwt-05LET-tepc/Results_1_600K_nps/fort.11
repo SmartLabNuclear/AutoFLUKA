@@ -1,0 +1,36 @@
+ 
+ Successfully allocated   680000000 bytes of memory
+ 
+  *** Reading evaporation and nuclear data from unit: 14
+
+**** Nuclear data file for Fluka v4 ****
+
+ File Version:_   43.0
+
+  *** Evaporation: using NNDC (1996) data ***
+
+ Starting location in blank common of LVL data:       1
+ Last location in blank common of LVL data:     9630256
+
+ Starting location in blank common of  CE   data: 9630257
+ Last location in blank common of  CE   data:     9681016
+
+ Starting location in blank common of alpha data: 9681017
+ Last location in blank common of alpha data:     9683776
+
+ Starting location in blank common of gamma data: 9683777
+ Last location in blank common of gamma data:     9814710
+
+ Starting location in blank common of beta data: 9814711
+ Last location in blank common of beta data:     9856998
+
+ Starting location in blank common of GDR data: 9856999
+ Last location in blank common of GDR data:     9912053
+
+ Starting location in blank common of (g,x) data: 9912054
+ Last location in blank common of (g,x) data:    10214974
+
+  **** RIPL2/Ign. self-cons. T=0 N,Z-dep. level density used ****
+  ****      RIPL-2 / Ignyatuk level density en. dep. used    ****
+  **** with Moller, Nix self-cons set of parameters for T=oo ****
+  ****       Original Gilbert/Cameron pairing energy used    ****

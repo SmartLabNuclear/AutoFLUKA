@@ -1,0 +1,22 @@
+
+                                   F L U K A
+
+Dir:   /usr/local/fluka
+Data:  /usr/local/fluka/data
+Exec:  /usr/local/fluka/bin/fluka
+Input: /mnt/c/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results/fwt_tepc_02.inp
+Initial seed already exists
+Running fluka in /mnt/c/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results/fluka_26
+
+======================== Running FLUKA for cycle # 1 ========================
+Removing links
+Removing temporary files
+Saving output and random number seed
+Saving additional files generated
+     Moving "fort.17" to "/mnt/c/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results/fwt_tepc_02001_fort.17"
+     Moving "fort.40" to "/mnt/c/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results/fwt_tepc_02001_fort.40"
+     Moving "fort.41" to "/mnt/c/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results/fwt_tepc_02001_fort.41"
+     Moving "fort.42" to "/mnt/c/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results/fwt_tepc_02001_fort.42"
+     Moving "fort.43" to "/mnt/c/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results/fwt_tepc_02001_fort.43"
+     Moving "fort.44" to "/mnt/c/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results/fwt_tepc_02001_fort.44"
+End of FLUKA run

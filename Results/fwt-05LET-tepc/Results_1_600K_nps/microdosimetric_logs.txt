@@ -1,0 +1,5 @@
+Loaded data from C:/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results\tepc_data.json
+Processing data for # Detector n:            1   Engy_SV
+Saved plot to C:/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results\Dose_Distribution.png
+Saved combined data to C:/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results\tepc_microdosimetry_data.json
+Saved combined data to C:/Users/zavier.ndum/OneDrive - Texas A&M University/Research_ZDFDJ/AIML_Workshop/FWT_TEPC/FLUKAAGENT_Sims/Results\tepc_microdosimetry_data.csv

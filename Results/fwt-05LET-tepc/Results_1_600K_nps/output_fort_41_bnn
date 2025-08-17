@@ -1,0 +1,12 @@
+1
+   Cartesian binning n.   1  "PrSource  " , generalized particle n.    1
+      X coordinate: from  4.2039E-45 to  2.8026E-45 cm, ***** bins ( 0.0000E+00 cm wide)
+      Y coordinate: from  1.4013E-45 to  0.0000E+00 cm, ***** bins ( 3.0000E-02 cm wide)
+      Z coordinate: from  1.4013E-43 to  1.0346E+00 cm,     0 bins ( 6.2832E+00 cm wide)
+      Data follow in a matrix A(ix,iy,iz), format (1(5x,1p,10(1x,e11.4)))
+
+
+
+      Percentage errors follow in a matrix A(ix,iy,iz), format (1(5x,1p,10(1x,e11.4)))
+
+

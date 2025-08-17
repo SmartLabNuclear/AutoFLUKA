@@ -1,0 +1,7 @@
+fwt_tepc_01001_fort.40
+fwt_tepc_02001_fort.40
+fwt_tepc_03001_fort.40
+fwt_tepc_04001_fort.40
+fwt_tepc_05001_fort.40
+
+output_fort_40

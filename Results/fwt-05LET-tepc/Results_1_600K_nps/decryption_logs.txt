@@ -1,0 +1,1325 @@
+Current Directory: C:\Users\zavier.ndum\OneDrive - Texas A&M University\Research_ZDFDJ\AIML_Workshop\FWT_TEPC\FLUKAAGENT_Sims\Results
+
+All files with ending number 17 have been written to fort_17_files_names.txt.
+
+Executing: bash -c "/usr/local/fluka/bin/usxsuw <fort_17_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+STOP UNKNOWN RECORD TYPE
+
+usxsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/ustsuw <fort_17_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+STOP UNKNOWN RECORD TYPE
+
+ustsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usbsuw <fort_17_files_names.txt",...
+Command Output (stdout):
+Type the input file:  Processing file: fwt_tepc_01001_fort.17                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+STOP UNKNOWN RECORD TYPE
+
+usbsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usrsuw <fort_17_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+STOP  2ND-RECORD
+
+usrsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usysuw <fort_17_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 461 of file usysuw.f (unit = 1, file = 'fwt_tepc_01001_fort.17')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f774dc83ad0 in ???
+#1  0x7f774dc84649 in ???
+#2  0x7f774dc8527f in ???
+#3  0x7f774ded84ab in ???
+#4  0x7f774ded8f0f in ???
+#5  0x7f774ded8fe4 in ???
+#6  0x7f774dedb34a in ???
+#7  0x7f774dedbc27 in ???
+#8  0x7f774e20641c in usysuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:461
+#9  0x7f774e2012e2 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:1496
+
+usysuw command failed. Trying the next utility...
+Error details:
+At line 461 of file usysuw.f (unit = 1, file = 'fwt_tepc_01001_fort.17')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f774dc83ad0 in ???
+#1  0x7f774dc84649 in ???
+#2  0x7f774dc8527f in ???
+#3  0x7f774ded84ab in ???
+#4  0x7f774ded8f0f in ???
+#5  0x7f774ded8fe4 in ???
+#6  0x7f774dedb34a in ???
+#7  0x7f774dedbc27 in ???
+#8  0x7f774e20641c in usysuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:461
+#9  0x7f774e2012e2 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:1496
+
+
+Executing: bash -c "/usr/local/fluka/bin/detsuw <fort_17_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1 Engy_SV           2000   9.99999972E-10   2.49999488E-07   0.00000000       4.99999966E-04
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:  Type the output file name:
+
+detsuw command executed successfully.
+
+All files with ending number 40 have been written to fort_40_files_names.txt.
+
+Executing: bash -c "/usr/local/fluka/bin/usxsuw <fort_40_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 225 of file usxsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.40')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f601b223ad0 in ???
+#1  0x7f601b224649 in ???
+#2  0x7f601b22527f in ???
+#3  0x7f601b4784ab in ???
+#4  0x7f601b478f0f in ???
+#5  0x7f601b478fe4 in ???
+#6  0x7f601b47b34a in ???
+#7  0x7f601b47bc27 in ???
+#8  0x7f601b8021f4 in usxsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:225
+#9  0x7f601b801242 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:1151
+
+usxsuw command failed. Trying the next utility...
+Error details:
+At line 225 of file usxsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.40')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f601b223ad0 in ???
+#1  0x7f601b224649 in ???
+#2  0x7f601b22527f in ???
+#3  0x7f601b4784ab in ???
+#4  0x7f601b478f0f in ???
+#5  0x7f601b478fe4 in ???
+#6  0x7f601b47b34a in ???
+#7  0x7f601b47bc27 in ???
+#8  0x7f601b8021f4 in usxsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:225
+#9  0x7f601b801242 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:1151
+
+
+Executing: bash -c "/usr/local/fluka/bin/ustsuw <fort_40_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.40')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f46fd743ad0 in ???
+#1  0x7f46fd744649 in ???
+#2  0x7f46fd74527f in ???
+#3  0x7f46fd9984ab in ???
+#4  0x7f46fd998f0f in ???
+#5  0x7f46fd998fe4 in ???
+#6  0x7f46fd99b34a in ???
+#7  0x7f46fd99bc27 in ???
+#8  0x7f46fde02fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7f46fde01232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+ustsuw command failed. Trying the next utility...
+Error details:
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.40')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f46fd743ad0 in ???
+#1  0x7f46fd744649 in ???
+#2  0x7f46fd74527f in ???
+#3  0x7f46fd9984ab in ???
+#4  0x7f46fd998f0f in ???
+#5  0x7f46fd998fe4 in ???
+#6  0x7f46fd99b34a in ???
+#7  0x7f46fd99bc27 in ???
+#8  0x7f46fde02fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7f46fde01232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+
+Executing: bash -c "/usr/local/fluka/bin/usbsuw <fort_40_files_names.txt",...
+Command Output (stdout):
+Type the input file:  Processing file: fwt_tepc_01001_fort.40                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_02001_fort.40                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_03001_fort.40                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_04001_fort.40                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_05001_fort.40                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file:                                                                                                                                                                                                                                         
+ Type the output file name:  Total Batches            5
+
+usbsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usbrea <fort_40_bnn_files_names.txt",...
+Command Output (usbrea stdout):
+Type the input file:                                                                                  
+       ***** Sum file *****      
+   300000.000    
+      300000
+           0
+           5
+ Type the output file name:
+
+usbrea command executed successfully for output_fort_40.bnn.
+
+Executing: bash -c "/usr/local/fluka/bin/usrsuw <fort_40_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+  Nrnmx:           1
+Command Error (stderr):
+STOP  IZN>K1
+
+usrsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usysuw <fort_40_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 485 of file usysuw.f (unit = 1, file = 'fwt_tepc_01001_fort.40')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f91caca3ad0 in ???
+#1  0x7f91caca4649 in ???
+#2  0x7f91caca527f in ???
+#3  0x7f91caef84ab in ???
+#4  0x7f91caef8f0f in ???
+#5  0x7f91caef8fe4 in ???
+#6  0x7f91caefb34a in ???
+#7  0x7f91caefbc27 in ???
+#8  0x7f91cb204f27 in usysuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:485
+#9  0x7f91cb2012e2 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:1496
+
+usysuw command failed. Trying the next utility...
+Error details:
+At line 485 of file usysuw.f (unit = 1, file = 'fwt_tepc_01001_fort.40')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f91caca3ad0 in ???
+#1  0x7f91caca4649 in ???
+#2  0x7f91caca527f in ???
+#3  0x7f91caef84ab in ???
+#4  0x7f91caef8f0f in ???
+#5  0x7f91caef8fe4 in ???
+#6  0x7f91caefb34a in ???
+#7  0x7f91caefbc27 in ???
+#8  0x7f91cb204f27 in usysuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:485
+#9  0x7f91cb2012e2 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:1496
+
+
+Executing: bash -c "/usr/local/fluka/bin/detsuw <fort_40_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1 Pr_Surce            10   1.40129846E-45  -15.0000000       30.0000000      -150.000000    
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:  Type the output file name:
+Command Error (stderr):
+Note: The following floating-point exceptions are signalling: IEEE_DENORMAL
+
+detsuw command executed successfully.
+
+All files with ending number 41 have been written to fort_41_files_names.txt.
+
+Executing: bash -c "/usr/local/fluka/bin/usxsuw <fort_41_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Type the output file name:
+
+usxsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/ustsuw <fort_41_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.41')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7fdf8c263ad0 in ???
+#1  0x7fdf8c264649 in ???
+#2  0x7fdf8c26527f in ???
+#3  0x7fdf8c4b84ab in ???
+#4  0x7fdf8c4b8f0f in ???
+#5  0x7fdf8c4b8fe4 in ???
+#6  0x7fdf8c4bb34a in ???
+#7  0x7fdf8c4bbc27 in ???
+#8  0x7fdf8c802fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7fdf8c801232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+ustsuw command failed. Trying the next utility...
+Error details:
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.41')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7fdf8c263ad0 in ???
+#1  0x7fdf8c264649 in ???
+#2  0x7fdf8c26527f in ???
+#3  0x7fdf8c4b84ab in ???
+#4  0x7fdf8c4b8f0f in ???
+#5  0x7fdf8c4b8fe4 in ???
+#6  0x7fdf8c4bb34a in ???
+#7  0x7fdf8c4bbc27 in ???
+#8  0x7fdf8c802fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7fdf8c801232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+
+Executing: bash -c "/usr/local/fluka/bin/usbsuw <fort_41_files_names.txt",...
+Command Output (stdout):
+Type the input file:  Processing file: fwt_tepc_01001_fort.41                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_02001_fort.41                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_03001_fort.41                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_04001_fort.41                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_05001_fort.41                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file:                                                                                                                                                                                                                                         
+ Type the output file name:  Total Batches            5
+
+usbsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usbrea <fort_41_bnn_files_names.txt",...
+Command Output (usbrea stdout):
+Type the input file:                                                                                  
+       ***** Sum file *****      
+   300000.000    
+      300000
+           0
+           5
+ Type the output file name:
+Command Error (usbrea stderr):
+Note: The following floating-point exceptions are signalling: IEEE_DENORMAL
+
+usbrea command executed successfully for output_fort_41.bnn.
+
+Executing: bash -c "/usr/local/fluka/bin/usrsuw <fort_41_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 468 of file usrsuw.f
+Fortran runtime error: Index '2130706432' of dimension 1 of array 'gmstor' outside of expected range (1031798786:1)
+
+Error termination. Backtrace:
+#0  0x7f88a55f3ad0 in ???
+#1  0x7f88a55f4649 in ???
+#2  0x7f88a55f4c46 in ???
+#3  0x7f88a5c06820 in usrsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:468
+#4  0x7f88a5c01942 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:1144
+
+usrsuw command failed. Trying the next utility...
+Error details:
+At line 468 of file usrsuw.f
+Fortran runtime error: Index '2130706432' of dimension 1 of array 'gmstor' outside of expected range (1031798786:1)
+
+Error termination. Backtrace:
+#0  0x7f88a55f3ad0 in ???
+#1  0x7f88a55f4649 in ???
+#2  0x7f88a55f4c46 in ???
+#3  0x7f88a5c06820 in usrsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:468
+#4  0x7f88a5c01942 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:1144
+
+
+Executing: bash -c "/usr/local/fluka/bin/usysuw <fort_41_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 485 of file usysuw.f (unit = 1, file = 'fwt_tepc_01001_fort.41')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7fdcf1903ad0 in ???
+#1  0x7fdcf1904649 in ???
+#2  0x7fdcf190527f in ???
+#3  0x7fdcf1b584ab in ???
+#4  0x7fdcf1b58f0f in ???
+#5  0x7fdcf1b58fe4 in ???
+#6  0x7fdcf1b5b34a in ???
+#7  0x7fdcf1b5bc27 in ???
+#8  0x7fdcf2004f27 in usysuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:485
+#9  0x7fdcf20012e2 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:1496
+
+usysuw command failed. Trying the next utility...
+Error details:
+At line 485 of file usysuw.f (unit = 1, file = 'fwt_tepc_01001_fort.41')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7fdcf1903ad0 in ???
+#1  0x7fdcf1904649 in ???
+#2  0x7fdcf190527f in ???
+#3  0x7fdcf1b584ab in ???
+#4  0x7fdcf1b58f0f in ???
+#5  0x7fdcf1b58fe4 in ???
+#6  0x7fdcf1b5b34a in ???
+#7  0x7fdcf1b5bc27 in ???
+#8  0x7fdcf2004f27 in usysuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:485
+#9  0x7fdcf20012e2 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:1496
+
+
+Executing: bash -c "/usr/local/fluka/bin/detsuw <fort_41_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1 PrSource            -1   1.40129846E-45   4.20389539E-45   2.80259693E-45  -2.80259693E-45
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+Command Error (stderr):
+At line 106 of file detsuw.f
+Fortran runtime error: Attempting to allocate already allocated variable 'iv'
+
+Error termination. Backtrace:
+#0  0x7ff399033ad0 in ???
+#1  0x7ff399034649 in ???
+#2  0x7ff399034c46 in ???
+#3  0x7ff399603a2d in detsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:106
+#4  0x7ff399601062 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:222
+
+detsuw command failed. Trying the next utility...
+Error details:
+At line 106 of file detsuw.f
+Fortran runtime error: Attempting to allocate already allocated variable 'iv'
+
+Error termination. Backtrace:
+#0  0x7ff399033ad0 in ???
+#1  0x7ff399034649 in ???
+#2  0x7ff399034c46 in ???
+#3  0x7ff399603a2d in detsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:106
+#4  0x7ff399601062 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:222
+
+
+All files with ending number 42 have been written to fort_42_files_names.txt.
+
+Executing: bash -c "/usr/local/fluka/bin/usxsuw <fort_42_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 225 of file usxsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.42')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7fae29b73ad0 in ???
+#1  0x7fae29b74649 in ???
+#2  0x7fae29b7527f in ???
+#3  0x7fae29dc84ab in ???
+#4  0x7fae29dc8f0f in ???
+#5  0x7fae29dc8fe4 in ???
+#6  0x7fae29dcb34a in ???
+#7  0x7fae29dcbc27 in ???
+#8  0x7fae2a2021f4 in usxsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:225
+#9  0x7fae2a201242 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:1151
+
+usxsuw command failed. Trying the next utility...
+Error details:
+At line 225 of file usxsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.42')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7fae29b73ad0 in ???
+#1  0x7fae29b74649 in ???
+#2  0x7fae29b7527f in ???
+#3  0x7fae29dc84ab in ???
+#4  0x7fae29dc8f0f in ???
+#5  0x7fae29dc8fe4 in ???
+#6  0x7fae29dcb34a in ???
+#7  0x7fae29dcbc27 in ???
+#8  0x7fae2a2021f4 in usxsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:225
+#9  0x7fae2a201242 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:1151
+
+
+Executing: bash -c "/usr/local/fluka/bin/ustsuw <fort_42_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.42')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f50cec43ad0 in ???
+#1  0x7f50cec44649 in ???
+#2  0x7f50cec4527f in ???
+#3  0x7f50cee984ab in ???
+#4  0x7f50cee98f0f in ???
+#5  0x7f50cee98fe4 in ???
+#6  0x7f50cee9b34a in ???
+#7  0x7f50cee9bc27 in ???
+#8  0x7f50cf202fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7f50cf201232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+ustsuw command failed. Trying the next utility...
+Error details:
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.42')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f50cec43ad0 in ???
+#1  0x7f50cec44649 in ???
+#2  0x7f50cec4527f in ???
+#3  0x7f50cee984ab in ???
+#4  0x7f50cee98f0f in ???
+#5  0x7f50cee98fe4 in ???
+#6  0x7f50cee9b34a in ???
+#7  0x7f50cee9bc27 in ???
+#8  0x7f50cf202fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7f50cf201232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+
+Executing: bash -c "/usr/local/fluka/bin/usbsuw <fort_42_files_names.txt",...
+Command Output (stdout):
+Type the input file:  Processing file: fwt_tepc_01001_fort.42                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_02001_fort.42                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_03001_fort.42                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_04001_fort.42                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_05001_fort.42                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file:                                                                                                                                                                                                                                         
+ Type the output file name:  Total Batches            5
+
+usbsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usbrea <fort_42_bnn_files_names.txt",...
+Command Output (usbrea stdout):
+Type the input file:                                                                                  
+       ***** Sum file *****      
+   300000.000    
+      300000
+           0
+           5
+ Type the output file name:
+
+usbrea command executed successfully for output_fort_42.bnn.
+
+Executing: bash -c "/usr/local/fluka/bin/usrsuw <fort_42_files_names.txt",...
+
+usrsuw command timed out after 10 seconds. Trying the next utility...
+
+Executing: bash -c "/usr/local/fluka/bin/usysuw <fort_42_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 485 of file usysuw.f (unit = 1, file = 'fwt_tepc_01001_fort.42')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f5ca8ce3ad0 in ???
+#1  0x7f5ca8ce4649 in ???
+#2  0x7f5ca8ce527f in ???
+#3  0x7f5ca8f384ab in ???
+#4  0x7f5ca8f38f0f in ???
+#5  0x7f5ca8f38fe4 in ???
+#6  0x7f5ca8f3b34a in ???
+#7  0x7f5ca8f3bc27 in ???
+#8  0x7f5ca9404f27 in usysuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:485
+#9  0x7f5ca94012e2 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:1496
+
+usysuw command failed. Trying the next utility...
+Error details:
+At line 485 of file usysuw.f (unit = 1, file = 'fwt_tepc_01001_fort.42')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f5ca8ce3ad0 in ???
+#1  0x7f5ca8ce4649 in ???
+#2  0x7f5ca8ce527f in ???
+#3  0x7f5ca8f384ab in ???
+#4  0x7f5ca8f38f0f in ???
+#5  0x7f5ca8f38fe4 in ???
+#6  0x7f5ca8f3b34a in ???
+#7  0x7f5ca8f3bc27 in ???
+#8  0x7f5ca9404f27 in usysuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:485
+#9  0x7f5ca94012e2 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usysuw.f:1496
+
+
+Executing: bash -c "/usr/local/fluka/bin/detsuw <fort_42_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           2 Dose                10   3.19496050E-43  -15.0000000       30.0000000      -150.000000    
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+ Type the input file:  Type the output file name:
+Command Error (stderr):
+Note: The following floating-point exceptions are signalling: IEEE_DENORMAL
+
+detsuw command executed successfully.
+
+All files with ending number 43 have been written to fort_43_files_names.txt.
+
+Executing: bash -c "/usr/local/fluka/bin/usxsuw <fort_43_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 526 of file usxsuw.f
+Fortran runtime error: Index '0' of dimension 1 of array 'acumcu' below lower bound of 1
+
+Error termination. Backtrace:
+#0  0x7fc365e33ad0 in ???
+#1  0x7fc365e34649 in ???
+#2  0x7fc365e34c46 in ???
+#3  0x7fc36640c800 in usxsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:526
+#4  0x7fc366401242 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:1151
+
+usxsuw command failed. Trying the next utility...
+Error details:
+At line 526 of file usxsuw.f
+Fortran runtime error: Index '0' of dimension 1 of array 'acumcu' below lower bound of 1
+
+Error termination. Backtrace:
+#0  0x7fc365e33ad0 in ???
+#1  0x7fc365e34649 in ???
+#2  0x7fc365e34c46 in ???
+#3  0x7fc36640c800 in usxsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:526
+#4  0x7fc366401242 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:1151
+
+
+Executing: bash -c "/usr/local/fluka/bin/ustsuw <fort_43_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.43')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f4d1e713ad0 in ???
+#1  0x7f4d1e714649 in ???
+#2  0x7f4d1e71527f in ???
+#3  0x7f4d1e9684ab in ???
+#4  0x7f4d1e968f0f in ???
+#5  0x7f4d1e968fe4 in ???
+#6  0x7f4d1e96b34a in ???
+#7  0x7f4d1e96bc27 in ???
+#8  0x7f4d1ee02fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7f4d1ee01232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+ustsuw command failed. Trying the next utility...
+Error details:
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.43')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7f4d1e713ad0 in ???
+#1  0x7f4d1e714649 in ???
+#2  0x7f4d1e71527f in ???
+#3  0x7f4d1e9684ab in ???
+#4  0x7f4d1e968f0f in ???
+#5  0x7f4d1e968fe4 in ???
+#6  0x7f4d1e96b34a in ???
+#7  0x7f4d1e96bc27 in ???
+#8  0x7f4d1ee02fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7f4d1ee01232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+
+Executing: bash -c "/usr/local/fluka/bin/usbsuw <fort_43_files_names.txt",...
+Command Output (stdout):
+Type the input file:  Processing file: fwt_tepc_01001_fort.43                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_02001_fort.43                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_03001_fort.43                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_04001_fort.43                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_05001_fort.43                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file:                                                                                                                                                                                                                                         
+ Type the output file name:  Total Batches            5
+
+usbsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usbrea <fort_43_bnn_files_names.txt",...
+Command Output (usbrea stdout):
+Type the input file:                                                                                  
+       ***** Sum file *****      
+   300000.000    
+      300000
+           0
+           5
+ Type the output file name:
+
+usbrea command executed successfully for output_fort_43.bnn.
+
+Executing: bash -c "/usr/local/fluka/bin/usrsuw <fort_43_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 468 of file usrsuw.f
+Fortran runtime error: Index '1' of dimension 1 of array 'gmstor' outside of expected range (1:-1065353213)
+
+Error termination. Backtrace:
+#0  0x7f9ba4613ad0 in ???
+#1  0x7f9ba4614649 in ???
+#2  0x7f9ba4614c46 in ???
+#3  0x7f9ba4c067ca in usrsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:468
+#4  0x7f9ba4c01942 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:1144
+
+usrsuw command failed. Trying the next utility...
+Error details:
+At line 468 of file usrsuw.f
+Fortran runtime error: Index '1' of dimension 1 of array 'gmstor' outside of expected range (1:-1065353213)
+
+Error termination. Backtrace:
+#0  0x7f9ba4613ad0 in ???
+#1  0x7f9ba4614649 in ???
+#2  0x7f9ba4614c46 in ???
+#3  0x7f9ba4c067ca in usrsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:468
+#4  0x7f9ba4c01942 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:1144
+
+
+Executing: bash -c "/usr/local/fluka/bin/usysuw <fort_43_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+STOP UNKNOWN RECORD TYPE
+
+usysuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/detsuw <fort_43_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           3 Enrgy_1             12   2.91470081E-43   4.00000000       4.00000000       48.0000000
+Command Error (stderr):
+At line 132 of file detsuw.f (unit = 51, file = 'fwt_tepc_01001_fort.43')
+Fortran runtime error: I/O past end of record on unformatted file
+
+Error termination. Backtrace:
+#0  0x7f74912b3ad0 in ???
+#1  0x7f74912b4649 in ???
+#2  0x7f74912b527f in ???
+#3  0x7f749150cc29 in ???
+#4  0x7f7491507eaa in ???
+#5  0x7f7491a01881 in detsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:132
+#6  0x7f7491a01062 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:222
+
+detsuw command failed. Trying the next utility...
+Error details:
+At line 132 of file detsuw.f (unit = 51, file = 'fwt_tepc_01001_fort.43')
+Fortran runtime error: I/O past end of record on unformatted file
+
+Error termination. Backtrace:
+#0  0x7f74912b3ad0 in ???
+#1  0x7f74912b4649 in ???
+#2  0x7f74912b527f in ???
+#3  0x7f749150cc29 in ???
+#4  0x7f7491507eaa in ???
+#5  0x7f7491a01881 in detsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:132
+#6  0x7f7491a01062 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:222
+
+
+All files with ending number 44 have been written to fort_44_files_names.txt.
+
+Executing: bash -c "/usr/local/fluka/bin/usxsuw <fort_44_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 526 of file usxsuw.f
+Fortran runtime error: Index '0' of dimension 1 of array 'acumcu' below lower bound of 1
+
+Error termination. Backtrace:
+#0  0x7fd6431f3ad0 in ???
+#1  0x7fd6431f4649 in ???
+#2  0x7fd6431f4c46 in ???
+#3  0x7fd64380c800 in usxsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:526
+#4  0x7fd643801242 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:1151
+
+usxsuw command failed. Trying the next utility...
+Error details:
+At line 526 of file usxsuw.f
+Fortran runtime error: Index '0' of dimension 1 of array 'acumcu' below lower bound of 1
+
+Error termination. Backtrace:
+#0  0x7fd6431f3ad0 in ???
+#1  0x7fd6431f4649 in ???
+#2  0x7fd6431f4c46 in ???
+#3  0x7fd64380c800 in usxsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:526
+#4  0x7fd643801242 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usxsuw.f:1151
+
+
+Executing: bash -c "/usr/local/fluka/bin/ustsuw <fort_44_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.44')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7fae69a23ad0 in ???
+#1  0x7fae69a24649 in ???
+#2  0x7fae69a2527f in ???
+#3  0x7fae69c784ab in ???
+#4  0x7fae69c78f0f in ???
+#5  0x7fae69c78fe4 in ???
+#6  0x7fae69c7b34a in ???
+#7  0x7fae69c7bc27 in ???
+#8  0x7fae6a002fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7fae6a001232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+ustsuw command failed. Trying the next utility...
+Error details:
+At line 237 of file ustsuw.f (unit = 1, file = 'fwt_tepc_01001_fort.44')
+Fortran runtime error: End of file
+
+Error termination. Backtrace:
+#0  0x7fae69a23ad0 in ???
+#1  0x7fae69a24649 in ???
+#2  0x7fae69a2527f in ???
+#3  0x7fae69c784ab in ???
+#4  0x7fae69c78f0f in ???
+#5  0x7fae69c78fe4 in ???
+#6  0x7fae69c7b34a in ???
+#7  0x7fae69c7bc27 in ???
+#8  0x7fae6a002fbc in ustsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:237
+#9  0x7fae6a001232 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/ustsuw.f:1046
+
+
+Executing: bash -c "/usr/local/fluka/bin/usbsuw <fort_44_files_names.txt",...
+Command Output (stdout):
+Type the input file:  Processing file: fwt_tepc_01001_fort.44                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_02001_fort.44                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_03001_fort.44                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_04001_fort.44                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file: fwt_tepc_05001_fort.44                                                                                                                                                                                                                  
+                                                                                 
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+ Type the input file:  Processing file:                                                                                                                                                                                                                                         
+ Type the output file name:  Total Batches            5
+
+usbsuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/usbrea <fort_44_bnn_files_names.txt",...
+Command Output (usbrea stdout):
+Type the input file:                                                                                  
+       ***** Sum file *****      
+   300000.000    
+      300000
+           0
+           5
+ Type the output file name:
+
+usbrea command executed successfully for output_fort_44.bnn.
+
+Executing: bash -c "/usr/local/fluka/bin/usrsuw <fort_44_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+At line 468 of file usrsuw.f
+Fortran runtime error: Index '1' of dimension 1 of array 'gmstor' outside of expected range (1:-1065353213)
+
+Error termination. Backtrace:
+#0  0x7f62e3aa3ad0 in ???
+#1  0x7f62e3aa4649 in ???
+#2  0x7f62e3aa4c46 in ???
+#3  0x7f62e40067ca in usrsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:468
+#4  0x7f62e4001942 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:1144
+
+usrsuw command failed. Trying the next utility...
+Error details:
+At line 468 of file usrsuw.f
+Fortran runtime error: Index '1' of dimension 1 of array 'gmstor' outside of expected range (1:-1065353213)
+
+Error termination. Backtrace:
+#0  0x7f62e3aa3ad0 in ???
+#1  0x7f62e3aa4649 in ???
+#2  0x7f62e3aa4c46 in ???
+#3  0x7f62e40067ca in usrsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:468
+#4  0x7f62e4001942 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/usrsuw.f:1144
+
+
+Executing: bash -c "/usr/local/fluka/bin/usysuw <fort_44_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           1
+Command Error (stderr):
+STOP UNKNOWN RECORD TYPE
+
+usysuw command executed successfully.
+
+Executing: bash -c "/usr/local/fluka/bin/detsuw <fort_44_files_names.txt",...
+Command Output (stdout):
+Type the input file:                                                                                  
+  DATE:  9/11/24,  TIME: 12:38:59
+   60000.0000    
+       60000
+           0
+           4 Enrgy_2              2   2.91470081E-43   4.00000000       4.00000000       8.00000000
+Command Error (stderr):
+At line 132 of file detsuw.f (unit = 51, file = 'fwt_tepc_01001_fort.44')
+Fortran runtime error: I/O past end of record on unformatted file
+
+Error termination. Backtrace:
+#0  0x7f526ebc3ad0 in ???
+#1  0x7f526ebc4649 in ???
+#2  0x7f526ebc527f in ???
+#3  0x7f526ee1cc29 in ???
+#4  0x7f526ee17eaa in ???
+#5  0x7f526f201881 in detsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:132
+#6  0x7f526f201062 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:222
+
+detsuw command failed. Trying the next utility...
+Error details:
+At line 132 of file detsuw.f (unit = 51, file = 'fwt_tepc_01001_fort.44')
+Fortran runtime error: I/O past end of record on unformatted file
+
+Error termination. Backtrace:
+#0  0x7f526ebc3ad0 in ???
+#1  0x7f526ebc4649 in ???
+#2  0x7f526ebc527f in ???
+#3  0x7f526ee1cc29 in ???
+#4  0x7f526ee17eaa in ???
+#5  0x7f526f201881 in detsuw
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:132
+#6  0x7f526f201062 in main
+	at /root/rpmbuild/BUILD/fluka-4/src/tools/detsuw.f:222
+
