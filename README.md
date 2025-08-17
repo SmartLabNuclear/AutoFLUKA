@@ -1,4 +1,4 @@
-# AutoFLUKA-MS
+# AutoFLUKA-AI Assistant
 AutoFLUKA is a Large Language Model (LLM) Agent-based Framework for Automating Input-File Based Modeling and Simulation, case study of Monte Carlo simulations in FLUKA.
 
 ## Highlights
@@ -32,7 +32,7 @@ No need to install Python dependencies. The application and its requirements are
 1) Install Docker Desktop (Windows/macOS) or Docker Engine (Linux) from [here](https://www.docker.com/products/docker-desktop  ) 
 2) Download the zip archive that contains the image tarball [here](https://tamucs-my.sharepoint.com/:u:/r/personal/zavier_ndum_tamu_edu/Documents/Research_ZDFDJ/AIML_Workshop/AutoFLUKA_Git/AutoFLUKA-alpha.zip?csf=1&web=1&e=DqZSSP). When prompted, sign into your account and send a short email, requesting permission to download the app.
    
-3) Extract `autofluka-1.0.0-alpha.tar` and ensure a `.env` file
+3) Extract `autofluka-1.0.0-alpha.tar` and ensure a `.env` file exists
 ### 🔐 .env Configuration
 4) Place required API keys and secrets in `.env`. They are loaded automatically at container startup.
 4) Open Docker Desktop (Windows) as Administrator to monitor images and containers.
