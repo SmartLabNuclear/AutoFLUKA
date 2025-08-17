@@ -231,7 +231,7 @@ Follow a typical workflow:
   Run `docker load -i ./autofluka-1.0.0-alpha.tar` again and use the name/tag Docker prints.
 
 - **invalid reference format**  
-  Line continuations or quoting are wrong. In PowerShell use backticks ` `, in WSL/Linux use `\`. Quote paths with spaces.
+  Line continuations or quoting are wrong. In PowerShell use backticks, in WSL/Linux use `\`. Quote paths with spaces.
 
 - **Jobs start but terminate instantly; no `_fort.xx` files**  
   FLUKA not mounted or wrong binary path. Mount entire `/usr/local/fluka` and set `RFLUKA_BIN` and `FLUKADATA`.
