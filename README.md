@@ -186,7 +186,7 @@ In **Working Directory (Optional)** enter a path under the mounted host folder. 
 ---
 
 ## 🛠️ PRACTICE
-Please refer to the **simulation_prompt.txt**[https://github.com/SmartLabNuclear/AutoFLUKA/blob/main/Tests/simulation_prompt.txt] file for prompt examples on how to query AutoFLUKA and get deterministic reponses. 
+Please refer to the [**simulation_prompt.txt**](https://github.com/SmartLabNuclear/AutoFLUKA/blob/main/Tests/simulation_prompt.txt) file for prompt examples on how to query AutoFLUKA and get deterministic reponses. 
 ### As a RAG-Based Assistant
 
 ![alt text](RAG-test-1.png)
