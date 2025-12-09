@@ -1,3 +1,32 @@
+===========================================================
+AUTOFLUKA PROMPT TEMPLATE (SIMULATION + RAG + WEB SEARCH)
+===========================================================
+
+This file defines all workflows and prompt modules for the
+AutoFLUKA system, including:
+
+1. Simulation workflows (original AutoFLUKA logic)
+2. RAG-based directory document queries
+3. Web research queries
+4. Executable prompt template for .txt-driven workflows
+
+NOTE TO ALL USERS:
+When referencing local files or directories, ALWAYS specify a path
+beginning with:
+
+    /mnt/host/...
+
+Example:
+    /mnt/host/RAG_tests/PDFs_for_FLUKA
+    /mnt/host/MyProject/ShieldingDocs
+
+AutoFLUKA cannot access Windows-style paths (C:\...), so users
+must supply Linux-style mounted locations.
+
+===========================================================
+SECTION 1 — SIMULATION WORKFLOWS (ORIGINAL)
+===========================================================
+
 =============================
 Query: General Case
 =============================
@@ -27,3 +56,191 @@ Please execute the following workflow chronologically from steps 1 through 9.
 7. Update "parameters.csv" with this new nps. Then REPEAT steps 1–4, SKIP step 5, and CONTINUE from step 8.
 8. Load "fluka_data.json", select only the "output_fort_17_tab.lis" data, perform a logarithmic rebinning, and save the rebinned data as "tepc_log_data.json".
 9. Load "tepc_log_data.json", compute and plot the microdosimetric spectra, then summarize what you did and FINISH.
+
+===========================================================
+SECTION 2 — RAG-BASED LOCAL DOCUMENT QUERIES
+===========================================================
+
+IMPORTANT:
+Users must provide the directory containing PDFs/TXT/CSV as:
+    /mnt/host/...path...
+
+-------------------------------------
+RAG Query: Simple PDFs summarization
+-------------------------------------
+- Can you summarize the PDfs provided in the given working directory? 
+- What is/are the main ideas presented in the research paper in this given working directory?  
+
+-------------------------------------
+RAG Query: Occupational Dose Limits
+-------------------------------------
+Using all documents in the directory specified by the user:
+
+Extract and summarize occupational radiation dose limits for adults.
+Include:
+- Annual whole-body limits
+- Lens, skin, extremity limits
+- Any dose-conversion formulas or equations
+- Regulatory citations (title + page number)
+- Differences between regulatory sources
+
+Provide:
+1. Detailed summary
+2. Bullet list of limits
+3. References to source documents
+
+-------------------------------------
+RAG Query: Radiation Emergencies
+-------------------------------------
+Using all PDFs in the chosen directory:
+
+Summarize common radiation emergencies and incident types:
+- Criticality incidents
+- Shielding loss events
+- Contamination or uptake scenarios
+- Equipment failures
+- High-dose or uncontrolled exposures
+- Transport and handling accidents
+
+For each:
+- Typical dose consequences
+- Immediate response requirements
+- Long-term mitigation actions
+- Citations (document title + page)
+
+-------------------------------------
+RAG Query: Technical Knowledge Extraction
+-------------------------------------
+Using documents in the user-specified directory:
+
+Extract all information relevant to:
+   {USER-SPECIFIED TOPIC}
+
+Possible topics include:
+- Shielding material properties
+- Cross-sections or attenuation physics
+- Detector theory, calibration, uncertainties
+- Biological radiation models
+- Regulatory or operational guidance
+- Experimental facility descriptions
+
+Deliver:
+- Technical summary
+- Extracted equations
+- Page-based citations
+- Cross-document comparisons
+
+===========================================================
+SECTION 3 — WEB SEARCH PROMPTS
+===========================================================
+
+-------------------------------------
+Web Query: Graphene for Space Shielding
+-------------------------------------
+Search for the newest research (past 5 years unless specified) on:
+
+   "Investigation of Graphene as a Shielding Material for Space Environments"
+
+Return:
+- Journal articles
+- NASA/ESA technical reports
+- DOE/OSTI publications
+- arXiv preprints
+- Links and DOIs
+- Technical summary comparing graphene to traditional shielding materials
+
+-------------------------------------
+Web Query: General Research Discovery
+-------------------------------------
+Search the web for recent research relevant to:
+
+   {USER-SPECIFIED TOPIC}
+
+Provide:
+1. Ranked list of relevant publications
+2. Links and citations
+3. Technical summaries
+4. Notes on how findings could be used in FLUKA simulations
+
+===========================================================
+SECTION 4 — EXECUTABLE PROMPT FILE TEMPLATE
+===========================================================
+
+This template allows AutoFLUKA to run workflows defined in an external .txt file.
+
+NOTE:
+Users must specify the working directory path in the GUI as:
+
+    /mnt/host/...path...
+
+-------------------------------------
+Template: fluka_exec_prompt.txt
+-------------------------------------
+
+# ===========================
+# AUTOFLUKA EXECUTABLE PROMPT
+# ===========================
+
+# REQUIRED:
+# Specify working directory in GUI:
+# /mnt/host/...your_directory...
+
+[WORKFLOW NAME]
+Describe purpose of workflow.
+
+[INPUT FILE]
+Name FLUKA input template file.
+
+[PARAMETER CSV]
+Specify the parameter file.
+
+[OPERATIONS]
+List ordered steps AutoFLUKA must perform. Example:
+1. Modify input template.
+2. Generate N input copies.
+3. Run FLUKA.
+4. Parse _fort.xx output.
+5. Build JSON database.
+6. Check convergence conditions.
+7. Update parameters and repeat if necessary.
+8. Plot results and save outputs.
+
+[CONDITIONS]
+Specify branching logic or stopping conditions.
+
+[OUTPUTS]
+List required final deliverables:
+- JSON files
+- Spectra or plot images
+- Summary report
+- Logs
+
+[END]
+
+===========================================================
+SECTION 5 — OPTIONAL UTILITY PROMPTS
+===========================================================
+
+-------------------------------------
+Explain FLUKA Output
+-------------------------------------
+Analyze all _sum.lis and _tab.lis files.
+Explain:
+- Scoring regions
+- Units
+- Statistical uncertainties
+- Detector meaning
+- Any warnings or errors
+
+-------------------------------------
+Uncertainty Reduction Calculation
+-------------------------------------
+Given uncertainty σ and primaries N, compute new required primaries:
+
+    N_new = N * (σ / σ_target)^2
+
+Round to the next 100000.
+
+===========================================================
+END OF FILE
+===========================================================
