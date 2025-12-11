@@ -30,7 +30,7 @@ You will need the following API keys:
 No need to install Python dependencies. The application and its requirements are bundled in a Docker image tarball for cross-platform use.
 
 1) Install Docker Desktop (Windows/macOS) or Docker Engine (Linux) from [here](https://www.docker.com/products/docker-desktop  ) 
-2) Download the zip archive that contains the image tarball [here](https://tamucs-my.sharepoint.com/:u:/g/personal/zavier_ndum_tamu_edu/IQDKq3ytFZ-YS4byCVxAJLCaAQ0ulL0k8smhp-y2pO0fx2E). You will be prompted to enter your email address to request access. **Please note**: Access is not instant. Your request will be reviewed within 24 hours, and you will receive a separate email once approved. Thank you for your patience!"
+2) Download the zip archive that contains the image tarball [here](https://tamucs-my.sharepoint.com/:u:/g/personal/zavier_ndum_tamu_edu/IQDKq3ytFZ-YS4byCVxAJLCaAQ0ulL0k8smhp-y2pO0fx2E?email=zavier.ndum%40tamu.edu&e=uecUKd). You will be prompted to enter your email address to request access. **Please note**: Access is not instant. Your request will be reviewed within 24 hours, and you will receive a separate email once approved. Thank you for your patience!"
    
 3) Extract `autofluka-1.0.0-alpha.tar` and ensure a `.env` file exists
 ### 🔐 .env Configuration
