@@ -32,7 +32,7 @@ No need to install Python dependencies. The application and its requirements are
 1) Install Docker Desktop (Windows/macOS) or Docker Engine (Linux) from [here](https://www.docker.com/products/docker-desktop  ) 
 2) Download the zip archive that contains the image tarball [here](https://tamucs-my.sharepoint.com/:u:/g/personal/zavier_ndum_tamu_edu/IQDKq3ytFZ-YS4byCVxAJLCaAR89SzczRX2HC1atp1_TWUI?e=Iz4Bf8). You will be prompted to sign in with your institutional account or enter your email address to request access. **Please note**: Access is not instant. Your request will be reviewed within 24 hours, and you will receive a separate email once approved. Thank you for your patience!
    
-3) Extract `autofluka-1.0.0-alpha.tar` and ensure a `.env` file exists
+3) Extract `autofluka-1.0.0-alpha2.tar` and ensure a `.env` file exists
 ### 🔐 .env Configuration
 4) Place required API keys and secrets in `.env`. They are loaded automatically at container startup.
 4) Open Docker Desktop (Windows) as Administrator to monitor images and containers.
@@ -40,7 +40,7 @@ No need to install Python dependencies. The application and its requirements are
 
 ## Installation & Run (Windows PowerShell, WSL, and Linux)
 
-**Important:** After `docker load -i …`, Docker prints the actual image name/tag. In commands below, replace `autofluka-1.0.0-alpha:latest` with whatever Docker reports on your machine.
+**Important:** After `docker load -i …`, Docker prints the actual image name/tag. In commands below, replace `autofluka-1.0.0-alpha2:latest` with whatever Docker reports on your machine.
 
 ### 1) Navigate to the application directory
 
@@ -48,24 +48,24 @@ Windows PowerShell:
 ```
 cd \path\to_directory
 ```
-Directory must contain the downloaded files:  `.env`  and  `autofluka-1.0.0-alpha.tar`
+Directory must contain the downloaded files:  `.env`  and  `autofluka-1.0.0-alpha2.tar`
 
 WSL / Linux:
 ```
 cd /path/to/directory
 ```
-Directory must contain the downloaded files:  `.env`  and  `autofluka-1.0.0-alpha.tar`
+Directory must contain the downloaded files:  `.env`  and  `autofluka-1.0.0-alpha2.tar`
 
 ### 2) Load the Docker image
 
 Windows PowerShell:
 ```
-docker load -i .\autofluka-1.0.0-alpha.tar
+docker load -i .\autofluka-1.0.0-alpha2.tar
 ```
 
 WSL / Linux:
 ```
-docker load -i ./autofluka-1.0.0-alpha.tar
+docker load -i ./autofluka-1.0.0-alpha2.tar
 ```
 
 ### 3) Run the application (map working directory and logs)
@@ -74,32 +74,32 @@ This mounts a local folder to `/mnt/host` inside the container and maps logs to 
 
 Windows PowerShell:
 ```
-docker run -d --name autofluka-1.0.0-alpha.tar `
+docker run -d --name autofluka-1.0.0-alpha2.tar `
   -p 8060:8060 `
   --env-file .env `
   -v "C:\path\to\some\local\directory:/mnt/host" `
   -v "${PWD}\AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" `
-  autofluka-1.0.0-alpha:latest
+  autofluka-1.0.0-alpha2:latest
 ```
 
 WSL (Ubuntu):
 ```
-docker run -d --name autofluka-1.0.0-alpha.tar \
+docker run -d --name autofluka-1.0.0-alpha2.tar \
   -p 8060:8060 \
   --env-file .env \
   -v "/mnt/c/path/to/some/local/directory:/mnt/host" \
   -v "$PWD/AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" \
-  autofluka-1.0.0-alpha:latest
+  autofluka-1.0.0-alpha2:latest
 ```
 
 Linux:
 ```
-docker run -d --name autofluka-1.0.0-alpha.tar \
+docker run -d --name autofluka-1.0.0-alpha2.tar \
   -p 8060:8060 \
   --env-file .env \
   -v "/path/to/some/local/directory:/mnt/host" \
   -v "$PWD/AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" \
-  autofluka-1.0.0-alpha:latest
+  autofluka-1.0.0-alpha2:latest
 ```
 
 ### 3b) Add FLUKA (optional but required to RUN simulations)
@@ -108,7 +108,7 @@ If you want to execute FLUKA jobs, you must mount a **Linux** FLUKA install (con
 
 Windows PowerShell (FLUKA installed inside WSL Ubuntu):
 ```
-docker run -d --name autofluka-1.0.0-alpha.tar `
+docker run -d --name autofluka-1.0.0-alpha2.tar `
   -p 8060:8060 `
   --env-file .env `
   -e FLUKADATA="/usr/local/fluka/data" `
@@ -116,7 +116,7 @@ docker run -d --name autofluka-1.0.0-alpha.tar `
   -v "\\wsl$\Ubuntu\usr\local\fluka:/usr/local/fluka:ro" `
   -v "C:\path\to\some\local\directory:/mnt/host" `
   -v "${PWD}\AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" `
-  autofluka-1.0.0-alpha:latest
+  autofluka-1.0.0-alpha2:latest
 ```
 
 WSL (run Docker command from inside WSL) / Linux:
@@ -151,14 +151,14 @@ docker ps
 Example:
 ```
 CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS          PORTS                    NAMES
-a9440b409497   autofluka-1.0.0-alpha:latest     "python autofluka-1.0.0-alpha.tar_app…"   17 minutes ago   Up 17 minutes   0.0.0.0:8060->8060/tcp   autofluka-1.0.0-alpha.tar
+a9440b409497   autofluka-1.0.0-alpha2:latest     "python autofluka-1.0.0-alpha2.tar_app…"   17 minutes ago   Up 17 minutes   0.0.0.0:8060->8060/tcp   autofluka-1.0.0-alpha2.tar
 ```
 
 ### 5) Launch the Web GUI
 
 a) Command line:
 ```
-docker logs -f autofluka-1.0.0-alpha.tar
+docker logs -f autofluka-1.0.0-alpha2.tar
 ```
 When the server is ready, open:
 ```
@@ -167,13 +167,13 @@ http://localhost:8060
 
 b) Docker Desktop:
 - Open Docker Desktop
-- Click the container name (e.g., `autofluka-1.0.0-alpha.tar`)
+- Click the container name (e.g., `autofluka-1.0.0-alpha2.tar`)
 - Click **Open in Browser** or follow `http://0.0.0.0:8060/` (equivalent to `http://localhost:8060`)
 
 ### 6) Restart via Docker Desktop
 
 - Open Docker Desktop
-- Click the container (e.g., `autofluka-1.0.0-alpha.tar`)
+- Click the container (e.g., `autofluka-1.0.0-alpha2.tar`)
 - Click **Restart**
 
 ### 6) Set Working Directory in the Chat UI
@@ -228,7 +228,7 @@ Follow a typical workflow:
 ## Troubleshooting
 
 - **pull access denied / repository does not exist**  
-  Run `docker load -i ./autofluka-1.0.0-alpha.tar` again and use the name/tag Docker prints.
+  Run `docker load -i ./autofluka-1.0.0-alpha2.tar` again and use the name/tag Docker prints.
 
 - **invalid reference format**  
   Line continuations or quoting are wrong. In PowerShell use backticks, in WSL/Linux use `\`. Quote paths with spaces.
