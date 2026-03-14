@@ -1,5 +1,7 @@
 ﻿# AutoFLUKA-MS
-AutoFLUKA is a Large Language Model (LLM) Agent-based Framework for Automating Input-File Based Modeling and Simulation, case study of Monte Carlo simulations in FLUKA.
+- AutoFLUKA is a locally deployable, domain-intelligent LLM agent framework that streamlines and automates Monte Carlo radiation workflows in FLUKA.
+- It includes grounded document analysis to deliver accurate, context-aware assistance.
+- All processing runs locally, so your documents, inputs, and simulation data remain in your environment.
 
 ## Highlights
 - AutoFLUKA broadly impacts engineering, energy, nuclear science, and medical physics.
