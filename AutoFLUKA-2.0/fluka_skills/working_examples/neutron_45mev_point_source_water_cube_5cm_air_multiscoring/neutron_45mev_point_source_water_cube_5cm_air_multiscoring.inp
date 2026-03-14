@@ -1,0 +1,46 @@
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+TITLE
+4.5 MeV neutron point source in air irradiating a 5 cm water cube
+DEFAULTS                                                              HADROTHE
+*
+BEAM       -4.50E-03                                                  NEUTRON
+BEAMPOS          0.0       0.0     -30.0
+BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
+*
+GEOBEGIN                                                              COMBNAME
+    0    0          
+RPP world      -100.0 +100.0 -100.0 +100.0 -100.0 +100.0
+RPP airbox     -50.0 +50.0 -50.0 +50.0 -50.0 +50.0
+RPP watbox     -2.5 +2.5 -2.5 +2.5 -2.5 +2.5
+END
+regBH        5 +world -airbox
+regAIR       5 +airbox -watbox
+regWAT       5 +watbox
+END
+GEOEND
+*
+ASSIGNMA    BLCKHOLE     regBH
+ASSIGNMA         AIR    regAIR
+ASSIGNMA       WATER    regWAT
+*
+EMFCUT        -1E-06      1E-6              regAIR  @LASTREG
+EMFCUT        -1E-06      1E-6              regWAT  @LASTREG
+EMFCUT        -1E-06      1E-6    1.0E-5  BLCKHOLE  @LASTMAT          PROD-CUT
+MULSOPT                      1       2.0         1         1          GLOBHAD
+*
+* Neutron track-length fluence in water region
+USRTRACK          -1   NEUTRON       -31    regWAT                 100NTRKWAT
+USRTRACK      4.5E-3    1.0E-9       -80                               &
+* Air-to-water neutron boundary-crossing fluence/current
+USRBDX           99.   NEUTRON       -32    regAIR    regWAT          AIR2WAT
+USRBDX        4.5E-3    1.0E-9       100        .0                     &
+* Energy deposition mesh in and around the water cube
+USRBIN          10.0    ENERGY       -33       5.0       5.0       5.0EDEPWAT
+USRBIN          -5.0      -5.0      -5.0       100       100       100 &
+* Dose mesh in and around the water cube
+USRBIN          10.0      DOSE       -34       5.0       5.0       5.0DOSEWAT
+USRBIN          -5.0      -5.0      -5.0       100       100       100 &
+*
+RANDOMIZ         1.0    145790
+START        5000000
+STOP
