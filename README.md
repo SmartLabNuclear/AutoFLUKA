@@ -1,15 +1,15 @@
-﻿# AutoFLUKA-2.0
+# AutoFLUKA-2.0
 - AutoFLUKA is a locally deployable, domain-intelligent LLM agent framework that streamlines and automates Monte Carlo radiation workflows in FLUKA.
 - It includes grounded document analysis to deliver accurate, context-aware assistance.
 - All processing runs locally, so your documents, inputs, and simulation data remain in your environment.
 
 ## Highlights
 - AutoFLUKA broadly impacts engineering, energy, nuclear science, and medical physics.
-- AutoFLUKA is an AI-driven tool that automates complex Monte Carlo workflows, integrating seamlessly with FLUKA.
-- It reduces human intervention and minimizes errors by automating input generation, simulation execution, and post-processing.
+- AutoFLUKA is an AI-driven framework that automates Monte Carlo workflows, from input authoring to simulation execution and post-processing.
+- **AutoFLUKA 2.0 adds autonomous FLUKA input generation with or without templates, plus execution-aware self-healing loops that detect failures, adjust inputs, and re-run jobs.**
+- This capability is enabled by **FLUKA Skills**: domain-specific, reusable workflow assets (instructions, examples, and execution logic) that guide the agent through robust FLUKA authoring, run orchestration, and error recovery.
 - A GUI improves accessibility and shortens the learning curve.
-- AutoFLUKA introduces JSON-based data outputs, enabling easier downstream analysis compared to traditional manual approaches.
-- The framework includes a Retrieval Augmented Generation (RAG) assistant, helping users address common FLUKA challenges by providing quick, context-specific guidance.
+- AutoFLUKA introduces JSON-based outputs and a RAG assistant for fast, context-aware troubleshooting.
 
 The original paper can be found [here](https://www.sciencedirect.com/science/article/pii/S2666546825000874)
 
@@ -167,8 +167,20 @@ docker rm autofluka-app
 ---
 ## Troubleshooting
 
+- **First check: terminal must see Docker and FLUKA.**  
+  Run `docker ps` and `which rfluka`. You should see a running/available Docker setup and a valid FLUKA binary path (for example `/usr/local/fluka/bin/rfluka`).
+
+- **Install FLUKA and export paths before full-simulation mode.**  
+  Ensure FLUKA is installed, then export:
+  - `export PATH=/usr/local/fluka/bin:$PATH`
+  - `export FLUKADATA=/usr/local/fluka/data`
+  - `export RFLUKA_BIN=/usr/local/fluka/bin/rfluka`
+
+- **WSL/Linux is recommended for full capabilities.**  
+  AutoFLUKA full execution mode is most reliable when Docker and FLUKA are both visible from the same Linux/WSL terminal.
+
 - **pull access denied / repository does not exist**  
-  Run `docker load -i ./autofluka-1.0.0-alpha2.tar` again and use the name/tag Docker prints.
+  Confirm image name/tag, then run `docker pull zev94/autofluka-2.0:2.0`.
 
 - **invalid reference format**  
   Line continuations or quoting are wrong. In PowerShell use backticks ` `` `, in WSL/Linux use `\`. Quote paths with spaces.
@@ -184,6 +196,17 @@ docker rm autofluka-app
 
 ---
 
+## News and Updates
+
+- **October 19, 2024:** First AutoFLUKA preprint upload demonstrated the proof-of-concept framework.  
+  Preprint: [AutoFLUKA: A Large Language Model Based Framework for Automating Monte Carlo Simulations in FLUKA](https://arxiv.org/abs/2410.15222)
+
+- **September 2025:** AutoFLUKA journal paper published in *Energy and AI* (Volume 21, Article 100555).  
+  Journal article: [Automating Monte Carlo simulations in nuclear engineering with domain knowledge-embedded large language model agents](https://www.sciencedirect.com/science/article/pii/S2666546825000874)
+
+- **March 2026:** Major **AutoFLUKA 2.0** update released with FLUKA Skills for autonomous input generation, execution, and self-healing workflows.
+
+---
 ## Citation
 
 BibTeX:
@@ -204,3 +227,14 @@ BibTeX:
 
 
 
+
+
+Preprint (arXiv) BibTeX:
+```
+@article{ndum2024autofluka,
+  title={Autofluka: A large language model based framework for automating monte carlo simulations in fluka},
+  author={Ndum, Zavier Ndum and Tao, Jian and Ford, John and Liu, Yang},
+  journal={arXiv preprint arXiv:2410.15222},
+  year={2024}
+}
+```
