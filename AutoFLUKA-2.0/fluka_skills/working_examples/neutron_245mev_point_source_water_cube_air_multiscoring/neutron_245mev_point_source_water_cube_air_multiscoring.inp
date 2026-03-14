@@ -1,0 +1,41 @@
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+TITLE
+2.45 MeV neutron point source in air irradiating a water cube
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+DEFAULTS                                                              PRECISIO
+BEAM       -2.45E-03                                                  NEUTRON
+BEAM       -2.45E-03                                                  NEUTRON
+*
+GEOBEGIN           0         0                                        COMBNAME
+    0    0          Water cube in air with outer blackhole boundary
+RPP bndbox     -1000.0 +1000.0 -1000.0 +1000.0 -1000.0 +1000.0
+RPP airbox     -50.0 +50.0 -50.0 +50.0 -50.0 +50.0
+RPP watbox     -5.0 +5.0 -5.0 +5.0 -5.0 +5.0
+END
+* outer blackhole shell
+regBH        5 +bndbox -airbox
+* air surrounding the phantom
+regAIR       5 +airbox -watbox
+* water phantom cube
+regWAT       5 +watbox
+END
+GEOEND
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+ASSIGNMA    BLCKHOLE     regBH
+ASSIGNMA         AIR    regAIR
+ASSIGNMA       WATER    regWAT
+* neutron fluence spectrum in water (track-length estimator)
+USRTRACK        -1.0   NEUTRON     -31.0    regWAT    1000.0      80.0NFWAT
+USRTRACK       0.020      1E-9                                         &
+* one-way neutron boundary fluence from air to water over cube surface
+USRBDX          99.0   NEUTRON     -32.0    regAIR    regWAT     600.0NBDXAW
+USRBDX         0.020      1E-9      80.0                               &
+* cartesian mesh: deposited energy in and around the cube
+USRBIN          10.0    ENERGY     -33.0      15.0      15.0      25.0EDEPWAT
+USRBIN         -15.0     -15.0     -25.0      30.0      30.0      50.0 &
+* cartesian mesh: dose in and around the cube
+USRBIN          10.0      DOSE     -34.0      15.0      15.0      25.0DOSEWAT
+USRBIN         -15.0     -15.0     -25.0      30.0      30.0      50.0 &
+RANDOMIZ         1.0 987654321
+START      5000000.0
+STOP
