@@ -165,6 +165,21 @@ docker rm autofluka-app
 ```
 
 ---
+
+## Example Screenshots
+
+### 1) Simple greeting / app responsiveness
+![AutoFLUKA simple greeting example](./Simple_greetings.png)
+
+### 2) Simulation workflow example
+![AutoFLUKA simulation workflow example](./Simulation_example_PionFlunce01.png)
+
+Additional simulation workflow screenshots are included in this repository:
+- `Simulation_example_PionFlunce02.png`
+- `Simulation_example_PionFlunce03.png`
+- `Simulation_example_PionFlunce04.png`
+
+---
 ## Troubleshooting
 
 - **First check: terminal must see Docker and FLUKA.**  
@@ -238,3 +253,4 @@ Preprint (arXiv) BibTeX:
   year={2024}
 }
 ```
+
