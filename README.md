@@ -1,252 +1,357 @@
-# AutoFLUKA-AI Assistant
-AutoFLUKA is a Large Language Model (LLM) Agent-based Framework for Automating Input-File Based Modeling and Simulation, case study of Monte Carlo simulations in FLUKA.
+# AutoFLUKA-2.0
+
+- AutoFLUKA is a locally deployable, domain-intelligent LLM agent framework that streamlines and automates Monte Carlo radiation workflows in FLUKA.
+- It includes grounded document analysis to deliver accurate, context-aware assistance.
+- All processing runs locally, so your documents, inputs, and simulation data remain in your environment.
 
 ## Highlights
+
 - AutoFLUKA broadly impacts engineering, energy, nuclear science, and medical physics.
-- AutoFLUKA is an AI-driven tool that automates complex Monte Carlo workflows, integrating seamlessly with FLUKA.
-- It reduces human intervention and minimizes errors by automating input generation, simulation execution, and post-processing.
+- AutoFLUKA is an AI-driven framework that automates Monte Carlo workflows, from input authoring to simulation execution and post-processing.
+- **AutoFLUKA 2.0 adds autonomous FLUKA input generation with or without templates, plus execution-aware self-healing loops that detect failures, adjust inputs, and re-run jobs.**
+- This capability is enabled by **FLUKA Skills**: domain-specific, reusable workflow assets (instructions, examples, and execution logic) that guide the agent through robust FLUKA authoring, run orchestration, and error recovery.
 - A GUI improves accessibility and shortens the learning curve.
-- AutoFLUKA introduces JSON-based data outputs, enabling easier downstream analysis compared to traditional manual approaches.
-- The framework includes a Retrieval Augmented Generation (RAG) assistant, helping users address common FLUKA challenges by providing quick, context-specific guidance.
+- AutoFLUKA introduces JSON-based outputs and a RAG assistant for fast, context-aware troubleshooting.
 
 The original paper can be found [here](https://www.sciencedirect.com/science/article/pii/S2666546825000874)
 
+---
+
+## Table of Contents
+
+- [Part 1: Prerequisites](#part-1-prerequisites)
+- [Part 2: Prepare Your Local Directory](#part-2-prepare-your-local-directory)
+- [Part 3: Run AutoFLUKA](#part-3-run-autofluka)
+  - [Option 1: Docker Compose (recommended)](#option-1-docker-compose-recommended)
+  - [Option 2: Plain `docker run` (legacy)](#option-2-plain-docker-run-legacy)
+  - [Verify and Open the UI](#verify-and-open-the-ui)
+- [Example Screenshots](#example-screenshots)
+- [Troubleshooting](#troubleshooting)
+- [Related Projects](#related-projects)
+- [News and Updates](#news-and-updates)
+- [Citation](#citation)
+
+New here? Start with **Part 1** and come back once your API keys are ready.
 
 ---
 
-## 🚀 Quick Start: Run with Docker
+## Part 1: Prerequisites
 
-### Prerequisites: API Keys
+### API Keys
 
 You will need the following API keys:
 
-- Get OpenAI API key [here](https://platform.openai.com/api-keys) OR Gemini API key (free API for `gemini-1.5`) [here](https://aistudio.google.com/app/apikey) 
-- LangChain (LangSmith) API key (optional, for tracing/logs) [here](https://www.langchain.com/langsmith) 
-- Google Custom Search API key [here](https://developers.google.com/custom-search/v1/introduction) 
-- Google Custom Search Engine ID [here](https://programmablesearchengine.google.com/controlpanel/overview?cx=f69ad3c244dca4170)
+- OpenAI API key (one of OpenAI or Gemini is required, this one needs billing set up): [step-by-step guide](LearningCenter/api-key-guides/openai.md)
+- Gemini API key (one of OpenAI or Gemini is required, this one is free): [step-by-step guide](LearningCenter/api-key-guides/gemini.md)
+- LangChain (LangSmith) API key (optional, for tracing/logs): [step-by-step guide](LearningCenter/api-key-guides/langsmith.md)
+- Hugging Face API key (`HF_API_KEY`, optional, for document parsing in RAG): [step-by-step guide](LearningCenter/api-key-guides/huggingface.md)
+- Tavily API key (optional, for live web search): [step-by-step guide](LearningCenter/api-key-guides/tavily.md)
+- Google Custom Search API key and Search Engine ID (optional legacy backup, see below): [step-by-step guide](LearningCenter/api-key-guides/google-custom-search.md)
 
-### Obtain the `.tar` file (Docker Image)
+#### Web Search (Optional)
 
-No need to install Python dependencies. The application and its requirements are bundled in a Docker image tarball for cross-platform use.
+Web search is not required to run FLUKA through AutoFLUKA. It has no effect on the core workflow of input authoring, execution, troubleshooting, and post-processing, all of which AutoFLUKA handles using its built-in domain knowledge and the mounted FLUKA Skills. Web search only adds a live, up-to-date reference and knowledge lookup on top of that, useful when you need current information a static knowledge base cannot provide.
 
-1) Install Docker Desktop (Windows/macOS) or Docker Engine (Linux) from [here](https://www.docker.com/products/docker-desktop  ) 
-2) Download the zip archive that contains the image tarball [here](https://tamucs-my.sharepoint.com/:u:/g/personal/zavier_ndum_tamu_edu/IQDKq3ytFZ-YS4byCVxAJLCaAQ0ulL0k8smhp-y2pO0fx2E?email=zavierndumndum%40gmail.com&e=UIJM0x). When prompted, sign into your account and send a short email, requesting permission to download the app.
-   
-3) Extract `autofluka-1.0.0-alpha.tar` and ensure a `.env` file exists
-### 🔐 .env Configuration
-4) Place required API keys and secrets in `.env`. They are loaded automatically at container startup.
-4) Open Docker Desktop (Windows) as Administrator to monitor images and containers.
+If you want it, AutoFLUKA's live web search runs on Tavily, free, no credit card required. See the [step-by-step Tavily guide](LearningCenter/api-key-guides/tavily.md) for the exact signup steps, including a couple of non-obvious spots in Tavily's own onboarding flow worth knowing about in advance.
+
+If you separately have a working Google Custom Search key from before, you can also set `CUSTOM_SEARCH_ENGINE_API_KEY` and `CUSTOM_SEARCH_ENGINE_ID`. AutoFLUKA will use it automatically as a silent backup whenever Tavily is unavailable, though this is entirely optional, and most new users should skip it. Google closed that API to new customers in 2025 and will shut it down entirely on January 1, 2027. See the [Google Custom Search guide](LearningCenter/api-key-guides/google-custom-search.md) if you already have access from before that cutoff.
+
+### Docker
+
+You will also need [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/macOS) or [Docker Engine](https://docs.docker.com/engine/install/) (Linux).
+
+### The AutoFLUKA Image
+
+Prebuilt images are published on Docker Hub: [`zev94/autofluka-2.0`](https://hub.docker.com/r/zev94/autofluka-2.0). No `.tar` download or access request needed, pull it directly.
+
+- `zev94/autofluka-2.0:2.0` — the original fixed build referenced by the AutoFLUKA paper. Frozen, kept exactly as first published.
+- `zev94/autofluka-2.0:latest` — the rolling tag, always the newest build.
+- `zev94/autofluka-2.0:YYYY-MM-DD` — a dated snapshot pushed alongside every `:latest` update, for pinning to a specific known build. See the [full tag list](https://hub.docker.com/r/zev94/autofluka-2.0/tags) for available dates.
+
+Both launch methods in [Part 3](#part-3-run-autofluka) pull the image automatically, so you don't need to do this manually, but you can get a head start now if you like:
+
+```bash
+docker pull zev94/autofluka-2.0:latest
+# or pin a specific dated build instead of the rolling tag:
+docker pull zev94/autofluka-2.0:2026-08-21
+```
+
 ---
 
-## Installation & Run (Windows PowerShell, WSL, and Linux)
+## Part 2: Prepare Your Local Directory
 
-**Important:** After `docker load -i …`, Docker prints the actual image name/tag. In commands below, replace `autofluka-1.0.0-alpha:latest` with whatever Docker reports on your machine.
+With your API keys ready, set up the folders AutoFLUKA reads from and writes to, plus your `.env` file. This is a one-time setup. Do it once, before your first run, regardless of which launch method you pick in Part 3.
 
-### 1) Navigate to the application directory
+### Volume Layout
+
+The container uses these logical areas:
+
+| Area | Container path | Mode | Purpose |
+|------|----------------|------|---------|
+| FLUKA Skills | `/autofluka/fluka_skills` | read-write | Authoring rules, working examples, troubleshooting knowledge base |
+| Logs | `/autofluka/AutoFLUKA_logs` | read-write | Application logs |
+| Sessions | `/autofluka/AutoFLUKA_Sessions` | read-write | Persistent chat/session history |
+| Working data | `/host` | read-write | Your FLUKA cases, inputs, and outputs |
+| FLUKA install *(optional)* | `/usr/local/fluka` | read-only (`:ro`) | Only needed for full simulation execution mode — see [2A/2B](#option-2-plain-docker-run-legacy) below |
+
+**Security note:** whatever folder you mount to `/host` is the *only* folder the agent can read or write. It can create and browse subfolders inside it freely, but it cannot reach anything outside it, including parent directories or other drives. Pick a folder you're comfortable giving AutoFLUKA full read/write access to, nothing more.
+
+### Download the FLUKA Skills Folder
+
+Download `fluka_skills/` from this repository (`AutoFLUKA-2.0/fluka_skills`) into your run directory. This ships with the domain rules, working examples, and troubleshooting knowledge base AutoFLUKA relies on.
+
+### Create the Logs and Sessions Folders
+
+PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force .\AutoFLUKA_logs, .\AutoFLUKA_Sessions | Out-Null
+```
+
+Bash / Linux / macOS / WSL:
+
+```bash
+mkdir -p AutoFLUKA_logs AutoFLUKA_Sessions
+```
+
+### Choose Your Working Directory
+
+AutoFLUKA also needs a folder to read and write your simulation files from. This can be **any existing folder on your machine** — you don't need to create a new one just for AutoFLUKA. You'll point Docker at this folder in Part 3.
+
+### Add Your `.env` File
+
+Create a `.env` file in your run directory and set required API keys/secrets. A key-only template is provided at `AutoFLUKA-2.0/fluka_skills/.env.example` (copy and fill values).
+
+**No space between the `=` and your key values.** Your `.env` file should have the following keys (see the links in [Part 1](#api-keys)):
+
+```
+OPENAI_API_KEY=<your_key_value>
+GEMINI_API_KEY=<your_key_value>
+LANGCHAIN_API_KEY=<your_key_value>
+HF_API_KEY=<your_key_value>
+TAVILY_API_KEY=<your_key_value>
+CUSTOM_SEARCH_ENGINE_API_KEY=<your_key_value>
+CUSTOM_SEARCH_ENGINE_ID=<your_key_value>
+```
+
+At minimum, provide one of `OPENAI_API_KEY` or `GEMINI_API_KEY`. Everything else is optional.
+
+---
+
+## Part 3: Run AutoFLUKA
+
+With Parts 1 and 2 done, you're ready to start AutoFLUKA. Pick one of the two options below. Docker Compose is recommended for almost everyone.
+
+### Option 1: Docker Compose (recommended)
+
+AutoFLUKA can be started with a single command using the [`docker-compose.yml`](./docker-compose.yml) file included in this repo.
+
+Open `docker-compose.yml` and change the `/host` volume line to your working directory from Part 2:
+
+```yaml
+- "C:/path/to/your/working-directory:/host"
+```
+
+Then run:
+
+```bash
+docker compose up -d
+```
+
+The first time you run this, Docker downloads the AutoFLUKA image from Docker Hub, then starts the container in the background.
+
+To pin a specific dated build instead of the newest rolling build, change `zev94/autofluka-2.0:latest` to a dated tag (e.g. `zev94/autofluka-2.0:2026-08-21`) on the `image:` line. See the [full tag list](https://hub.docker.com/r/zev94/autofluka-2.0/tags) for available dates.
+
+**FLUKA execution mode (optional):** by default, `docker-compose.yml` runs AutoFLUKA in chatbot/RAG mode only. To also run actual FLUKA simulations, install FLUKA in your WSL/Linux environment, then uncomment the `FLUKADATA`/`RFLUKA_BIN` environment lines and the FLUKA volume mount in `docker-compose.yml`, and run `docker compose` from your WSL/Linux terminal, not PowerShell (see [Troubleshooting](#troubleshooting) for why).
+
+**Everyday commands:** run these from the same folder. Use `docker compose logs -f` to watch the live logs, `docker compose down` to stop and remove the container, and `docker compose up -d --pull always` to pull the latest image and restart.
+
+Your chat history stays in `AutoFLUKA_Sessions/`, so it survives restarts as long as that folder isn't deleted.
+
+### Option 2: Plain `docker run` (legacy)
+
+<details>
+<summary>Docker Compose above is the recommended path. Expand for the equivalent plain <code>docker run</code> syntax.</summary>
+
+Using the folders and `.env` file from Part 2:
+
+#### 2A) Run WITH FLUKA (full simulation mode)
+
+- Use this mode if you want AutoFLUKA to execute FLUKA jobs and decrypt results.
+- You must mount a Linux FLUKA installation and provide `FLUKADATA` and `RFLUKA_BIN`.
+- **IMPORTANT**: AutoFLUKA does **not** ship with a prebuilt FLUKA package. Users wanting this mode must install FLUKA from the official [website](https://fluka.cern/documentation/installation).
 
 Windows PowerShell:
-```
-cd \path\to_directory
-```
-Directory must contain the downloaded files:  `.env`  and  `autofluka-1.0.0-alpha.tar`
 
-WSL / Linux:
-```
-cd /path/to/directory
-```
-Directory must contain the downloaded files:  `.env`  and  `autofluka-1.0.0-alpha.tar`
-
-### 2) Load the Docker image
-
-Windows PowerShell:
-```
-docker load -i .\autofluka-1.0.0-alpha.tar
-```
-
-WSL / Linux:
-```
-docker load -i ./autofluka-1.0.0-alpha.tar
-```
-
-### 3) Run the application (map working directory and logs)
-
-This mounts a local folder to `/mnt/host` inside the container and maps logs to `/autofluka/AutoFLUKA_logs`.
-
-Windows PowerShell:
-```
-docker run -d --name autofluka-1.0.0-alpha.tar `
-  -p 8060:8060 `
-  --env-file .env `
-  -v "C:\path\to\some\local\directory:/mnt/host" `
-  -v "${PWD}\AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" `
-  autofluka-1.0.0-alpha:latest
-```
-
-WSL (Ubuntu):
-```
-docker run -d --name autofluka-1.0.0-alpha.tar \
-  -p 8060:8060 \
-  --env-file .env \
-  -v "/mnt/c/path/to/some/local/directory:/mnt/host" \
-  -v "$PWD/AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" \
-  autofluka-1.0.0-alpha:latest
-```
-
-Linux:
-```
-docker run -d --name autofluka-1.0.0-alpha.tar \
-  -p 8060:8060 \
-  --env-file .env \
-  -v "/path/to/some/local/directory:/mnt/host" \
-  -v "$PWD/AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" \
-  autofluka-1.0.0-alpha:latest
-```
-
-### 3b) Add FLUKA (optional but required to RUN simulations)
-
-If you want to execute FLUKA jobs, you must mount a **Linux** FLUKA install (contains `bin/fluka` or `bin/rfluka` and the `data/` tree). The Windows executable cannot run in a Linux container.
-
-Windows PowerShell (FLUKA installed inside WSL Ubuntu):
-```
-docker run -d --name autofluka-1.0.0-alpha.tar `
-  -p 8060:8060 `
-  --env-file .env `
-  -e FLUKADATA="/usr/local/fluka/data" `
-  -e RFLUKA_BIN="/usr/local/fluka/bin/fluka" `
+```powershell
+docker run -d --name autofluka-app `
+  -p 8050:8000 `
+  --env-file ".env" `
+  -e FLUKADATA=/usr/local/fluka/data `
+  -e RFLUKA_BIN=/usr/local/fluka/bin/rfluka `
   -v "\\wsl$\Ubuntu\usr\local\fluka:/usr/local/fluka:ro" `
-  -v "C:\path\to\some\local\directory:/mnt/host" `
+  -v "${PWD}\fluka_skills:/autofluka/fluka_skills" `
   -v "${PWD}\AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" `
-  autofluka-1.0.0-alpha:latest
+  -v "${PWD}\AutoFLUKA_Sessions:/autofluka/AutoFLUKA_Sessions" `
+  -v "C:\path\to\your\simulation-data:/host" `
+  zev94/autofluka-2.0:latest
 ```
 
-WSL (run Docker command from inside WSL) / Linux:
-```
+WSL / Linux:
+
+```bash
 docker run -d --name autofluka-app \
-  -p 8060:8060 \
+  -p 8050:8000 \
   --env-file .env \
   -e FLUKADATA=/usr/local/fluka/data \
-  -e RFLUKA_BIN=/usr/local/fluka/bin/fluka \
+  -e RFLUKA_BIN=/usr/local/fluka/bin/rfluka \
   -v /usr/local/fluka:/usr/local/fluka:ro \
-  -v "/mnt/path/to/some/local/directory:/mnt/host" \
+  -v "$PWD/fluka_skills:/autofluka/fluka_skills" \
   -v "$PWD/AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" \
-  autofluka-app:latest
+  -v "$PWD/AutoFLUKA_Sessions:/autofluka/AutoFLUKA_Sessions" \
+  -v "/mnt/c/path/to/your/simulation-data:/host" \
+  zev94/autofluka-2.0:latest
 ```
-Optional checks (inside container): It's important to ensure FLUKA environments have been successfully loaded into the container. 
-```
-docker exec -it autofluka bash -lc 'ls -l /usr/local/fluka/bin/fluka ; /usr/local/fluka/bin/fluka -h | head -n 3 ; echo FLUKADATA=$FLUKADATA'
-```
-Notes:
-- Replace `\path\to\some\local\directory` or `/path/to/some/local/directory` to an actual directory on your PC. 
--  `RFLUKA_BIN` can be `/usr/local/fluka/bin/fluka` or `/usr/local/fluka/bin/rfluka` depending on your FLUKA build.
-- Ensure you mount the entire `/usr/local/fluka` directory (read-only is fine); do not mount only `bin/`.
-- If mounting from PowerShell to a WSL path, use the UNC form: `\\wsl$\Ubuntu\usr\local\fluka:/usr/local/fluka:ro`.
 
-### 4) Verify the container is running
+#### 2B) Run WITHOUT FLUKA (chatbot/RAG mode)
 
-All shells:
+Use this mode if you only need AI chat, document-grounded Q&A, and input authoring/editing support. No FLUKA installation mount is required.
+
+Windows PowerShell:
+
+```powershell
+docker run -d --name autofluka-app `
+  -p 8050:8000 `
+  --env-file ".env" `
+  -v "${PWD}\fluka_skills:/autofluka/fluka_skills" `
+  -v "${PWD}\AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" `
+  -v "${PWD}\AutoFLUKA_Sessions:/autofluka/AutoFLUKA_Sessions" `
+  -v "C:\path\to\your\working-directory:/host" `
+  zev94/autofluka-2.0:latest
 ```
+
+WSL / Linux:
+
+```bash
+docker run -d --name autofluka-app \
+  -p 8050:8000 \
+  --env-file .env \
+  -v "$PWD/fluka_skills:/autofluka/fluka_skills" \
+  -v "$PWD/AutoFLUKA_logs:/autofluka/AutoFLUKA_logs" \
+  -v "$PWD/AutoFLUKA_Sessions:/autofluka/AutoFLUKA_Sessions" \
+  -v "/mnt/c/path/to/your/working-directory:/host" \
+  zev94/autofluka-2.0:latest
+```
+
+Replace `C:\path\to\your\...` or `/path/to/your/...` with the folders you chose in Part 2. Pin a dated tag (e.g. `zev94/autofluka-2.0:2026-08-21`), or use `zev94/autofluka-2.0:2.0` for the original frozen paper build, instead of `:latest` for a specific known build.
+
+Verify, view logs, stop, and remove:
+
+```bash
 docker ps
+docker logs -f autofluka-app
+docker stop autofluka-app
+docker rm autofluka-app
 ```
 
-Example:
-```
-CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS          PORTS                    NAMES
-a9440b409497   autofluka-1.0.0-alpha:latest     "python autofluka-1.0.0-alpha.tar_app…"   17 minutes ago   Up 17 minutes   0.0.0.0:8060->8060/tcp   autofluka-1.0.0-alpha.tar
-```
+</details>
 
-### 5) Launch the Web GUI
+### Verify and Open the UI
 
-a) Command line:
-```
-docker logs -f autofluka-1.0.0-alpha.tar
-```
-When the server is ready, open:
-```
-http://localhost:8060
+Check container:
+
+```bash
+docker ps
+docker logs -f autofluka-app
 ```
 
-b) Docker Desktop:
-- Open Docker Desktop
-- Click the container name (e.g., `autofluka-1.0.0-alpha.tar`)
-- Click **Open in Browser** or follow `http://0.0.0.0:8060/` (equivalent to `http://localhost:8060`)
+Open:
 
-### 6) Restart via Docker Desktop
-
-- Open Docker Desktop
-- Click the container (e.g., `autofluka-1.0.0-alpha.tar`)
-- Click **Restart**
-
-### 6) Set Working Directory in the Chat UI
-
-In **Working Directory (Optional)** enter a path under the mounted host folder. Example:
+```text
+http://localhost:8050
 ```
-/mnt/host/tests
+
+Stop / remove:
+
+```bash
+docker stop autofluka-app
+docker rm autofluka-app
 ```
 
 ---
 
-## 🛠️ PRACTICE
-Please refer to the [**simulation_prompt.txt**](https://github.com/SmartLabNuclear/AutoFLUKA/blob/main/Tests/simulation_prompt.txt) file for prompt examples on how to query AutoFLUKA and get deterministic reponses. 
-### As a RAG-Based Assistant
+## Example Screenshots
 
-![alt text](RAG-test-1.png)
-- AutoFLUKA can serve as a Retrieval-Augmented Generation (RAG) assistant for nuclear science and engineering (NSE) Q&A, technical document search, and literature review.
-- No FLUKA installation required in this mode.
+### 1) Simple greeting / app responsiveness
 
-How to use:
-1) Put PDFs in a local folder.  
-2) In the Chat UI, set **Working Directory (Optional)** to the PDF folder path, e.g.:
-```
-/mnt/host/My_NSE_Papers
-```
-3) Ask questions; the assistant retrieves from your PDFs and answers with citations.
+![AutoFLUKA simple greeting example](./Simple_greetings.png)
 
-Notes:
-- Files remain local; no cloud upload is required.
-- Use clear, specific questions for best results.
+### 2) Simulation workflow example
 
----
+![AutoFLUKA simulation workflow example](./Simulation_example_PionFlunce01.png)
 
-### As a FLUKA Simulation Assistant
-
-![alt text](simulation-01-1.png)
-Follow a typical workflow:
-
-**Important:** You must have FLUKA installed locally (Linux build) to run simulations. [Guide](https://fluka.cern/documentation/installation) 
-
-1) Download an example folder (e.g., `fwt-05LET-tepc`) to your machine.  
-2) In the Chat UI, set your working directory to that folder, e.g.:
-```
-/mnt/host/Examples/ex-01-piom-fluence
-```
-3) Open `simulation_prompt.txt`, copy the prompt, paste into the chat, and submit.  
-4) Monitor progress in the chat.  
-5) Plots, JSON data, and logs are saved in your working directory.
+Additional simulation workflow screenshots are included in this repository:
+- `Simulation_example_PionFlunce02.png`
+- `Simulation_example_PionFlunce03.png`
+- `Simulation_example_PionFlunce04.png`
 
 ---
 
 ## Troubleshooting
 
-- **pull access denied / repository does not exist**  
-  Run `docker load -i ./autofluka-1.0.0-alpha.tar` again and use the name/tag Docker prints.
+- **First check: terminal must see Docker and FLUKA.**
+  Run `docker ps` and `which rfluka`. You should see a running/available Docker setup and a valid FLUKA binary path (for example `/usr/local/fluka/bin/rfluka`).
 
-- **invalid reference format**  
-  Line continuations or quoting are wrong. In PowerShell use backticks, in WSL/Linux use `\`. Quote paths with spaces.
+- **Install FLUKA and export paths before full-simulation mode.**
+  Ensure FLUKA is installed, then export:
+  - `export PATH=/usr/local/fluka/bin:$PATH`
+  - `export FLUKADATA=/usr/local/fluka/data`
+  - `export RFLUKA_BIN=/usr/local/fluka/bin/rfluka`
 
-- **Jobs start but terminate instantly; no `_fort.xx` files**  
+- **WSL/Linux is recommended for full capabilities.**
+  AutoFLUKA full execution mode is most reliable when Docker and FLUKA are both visible from the same Linux/WSL terminal — run `docker compose`/`docker run` from that same terminal, not PowerShell, for FLUKA execution mode specifically.
+
+- **pull access denied / repository does not exist**
+  Confirm image name/tag, then run `docker pull zev94/autofluka-2.0:latest`.
+
+- **invalid reference format**
+  Line continuations or quoting are wrong. In PowerShell use backticks ` `` `, in WSL/Linux use `\`. Quote paths with spaces.
+
+- **Jobs start but terminate instantly; no `_fort.xx` files**
   FLUKA not mounted or wrong binary path. Mount entire `/usr/local/fluka` and set `RFLUKA_BIN` and `FLUKADATA`.
 
-- **Exec format error**  
+- **Exec format error**
   You mounted a Windows FLUKA binary. The container needs the Linux build.
 
-- **Cannot access WSL paths from PowerShell**  
+- **Cannot access WSL paths from PowerShell**
   Use UNC paths like `\\wsl$\Ubuntu\usr\local\fluka` and enable WSL integration in Docker Desktop.
+
+---
+
+## Related Projects
+
+AutoFLUKA is part of a broader ecosystem of domain-specific AI agent frameworks built on a shared foundation:
+
+- **[RADIANT-LLM](https://github.com/SmartLabNuclear/RADIANT_LLM)** — the local-LLM and visual-parser capabilities AutoFLUKA and its sibling projects build on are documented and available standalone here. If you want local-model support or the visual document parser on its own, start there.
+
+---
+
+## News and Updates
+
+- **October 19, 2024:** First AutoFLUKA preprint upload demonstrated the proof-of-concept framework.
+  Preprint: [AutoFLUKA: A Large Language Model Based Framework for Automating Monte Carlo Simulations in FLUKA](https://arxiv.org/abs/2410.15222)
+
+- **September 2025:** AutoFLUKA journal paper published in *Energy and AI* (Volume 21, Article 100555).
+  Journal article: [Automating Monte Carlo simulations in nuclear engineering with domain knowledge-embedded large language model agents](https://www.sciencedirect.com/science/article/pii/S2666546825000874)
+
+- **March 2026:** Major **AutoFLUKA 2.0** update released with FLUKA Skills for autonomous input generation, execution, and self-healing workflows.
 
 ---
 
 ## Citation
 
 BibTeX:
+
 ```
 @article{ndum2025automating,
   title={Automating Monte Carlo simulations in nuclear engineering with domain knowledge-embedded large language model agents},
@@ -255,5 +360,16 @@ BibTeX:
   pages={100555},
   year={2025},
   publisher={Elsevier}
+}
+```
+
+Preprint (arXiv) BibTeX:
+
+```
+@article{ndum2024autofluka,
+  title={Autofluka: A large language model based framework for automating monte carlo simulations in fluka},
+  author={Ndum, Zavier Ndum and Tao, Jian and Ford, John and Liu, Yang},
+  journal={arXiv preprint arXiv:2410.15222},
+  year={2024}
 }
 ```

@@ -1,0 +1,2 @@
+beam_pos_z,emfcut_E_kin,emfcut_E_gamma,usrbdx_Emin,usrbdx_Emax,usrbdx_Nbins,usrtrack_Emin,usrtrack_Emax,usrtrack_vol,usrtrack_bins,usrbin_Xmin,usrbin_Ymin,usrbin_Zmin,usrbin_Xmax,usrbin_Ymax,usrbin_Zmax,usrbin_Nx,usrbin_Ny,usrbin_Nz,seed,nps
+-50,-0.01,0.01,1e-09,50,100,0.001,50,1000,20,-50,-50,-50,50,50,50,100,100,60,10,600000

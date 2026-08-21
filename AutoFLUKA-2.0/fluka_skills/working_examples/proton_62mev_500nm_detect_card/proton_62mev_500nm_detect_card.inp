@@ -1,0 +1,81 @@
+TITLE
+
+*Set the defaults for precision simulations
+DEFAULTS                                                              PRECISIO
+*Define the beam characteristics
+BEAM          -0.062                           2.5       2.5          PROTON
+*Define the beam position
+BEAMPOS         -5.0       0.0      -0.1
+BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
+GEOBEGIN                                                              COMBNAME
+    0    0          
+*Black body
+SPH blkbody    0.0 0.0 0.0 1000.0
+*Void sphere
+SPH air        0.0 0.0 0.0 100.0
+*Void sphere
+SPH Source     -5 0.0 0.0 0.1
+*Cylindrical target
+RCC Casing     0.0 0.0 -0.85 0 0 1.5 0.8
+*Cylindrical target
+RCC Shell      0.0 0.0 -0.75 0 0 1.3 0.75
+*Cylindrical gas target
+RCC target     0.0 0.0 -0.75 0 0 1.3 0.65
+END
+*Black hole
+BLKBODY      5 +blkbody -air
+*Void around the casing
+AIR          5 +air -Casing-Source
+*Source
+SOURCE       5 +Source
+*Casing
+CASING       5 +Casing-Shell
+*Shell around Target
+SHELL        5 +Shell-target
+*Target
+TARGET       5 +target
+END
+GEOEND
+*264 Tissue-Eq.Gas (Propane Based)
+MATERIAL                      3.84615E-5                              Tissue-E
+COMPOUND      -10.13  HYDROGEN    -77.55    CARBON     -3.51  NITROGENA-150
+COMPOUND       -5.23    OXYGEN    -1.742  FLUORINE    -1.838   CALCIUMA-150
+COMPOUND   -0.102672  HYDROGEN  -0.56894    CARBON -0.035022  NITROGENTissue-E
+COMPOUND   -0.293366    OXYGEN                                        Tissue-E
+*A-150 Tissue-Equiv. Plastic
+*from: ICRU Report #37, 1984, pub. by ICRU, Bethesda, Md, 20814, USA.
+MATERIAL                           1.127                              A-150
+MATERIAL           9            0.001696                              FLUORINE
+*264 Tissue-Eq.Gas (Propane Based)
+MATERIAL                       0.0018263                              ICRU-264
+COMPOUND   -0.102672  HYDROGEN  -0.56894    CARBON -0.035022  NITROGENICRU-264
+COMPOUND   -0.293366    OXYGEN                                        ICRU-264
+*..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+ASSIGNMA    BLCKHOLE   BLKBODY
+ASSIGNMA         AIR       AIR
+ASSIGNMA         AIR    SOURCE
+ASSIGNMA    POLYSTYR    CASING
+ASSIGNMA       A-150     SHELL
+ASSIGNMA    Tissue-E    TARGET
+*
+*Energy Deposition the the SV
+DETECT         -2000       0.0   15.0E-6                        TARGETEngy_SV
+EMFCUT        -1E-06      0.01              TARGET
+EMFCUT        -1E-06      0.01              CASING
+*
+*Sets the size of electron steps corresponding to a fixed fraction of the total energy.
+EMFFIX      Tissue-E      0.01     A-150      0.05  POLYSTYR      0.05PRINT
+*
+*Sets different energy transport cutoffs for hadrons, muons and neutrinos.
+PART-THR      -1E-14    PROTON
+*
+MULSOPT                      1       2.0         1         1          GLOBHAD
+USRBIN            10    PROTON       -40       7.7       4.0       4.0Pr_Surce
+USRBIN          -7.0      -4.0      -4.0       100       100       100 &
+USRBDX            99    PROTON       -41    SOURCE       AIR          Source_Phi
+USRBDX        100E-3                 500                               &
+*Set the random number seed
+RANDOMIZ         1.0  45464644
+*Set the number of primary histories to be simulated in the run
+START       10000000
+STOP

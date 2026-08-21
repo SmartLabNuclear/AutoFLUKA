@@ -1,0 +1,287 @@
+\documentclass[11pt]{article}
+
+% =========================
+% AutoFLUKA Technical Report Template (LaTeX)
+% =========================
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{placeins}
+\usepackage{listings}
+\usepackage{etoolbox}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={AutoFLUKA Technical Report},
+    pdfauthor={AutoFLUKA}
+}
+
+\setstretch{1.08}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14pt}
+\captionsetup{font=small,labelfont=bf}
+\sisetup{round-mode=places,round-precision=3}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection.}{0.5em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{AutoFLUKA Technical Report}
+\rhead{\ReportShortTitle}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+
+% =========================
+% User-editable metadata
+% =========================
+\newcommand{\ReportTitle}{AutoFLUKA Technical Report Title}
+\newcommand{\ReportShortTitle}{Case Summary}
+\newcommand{\ProjectName}{Project / Campaign Name}
+\newcommand{\CaseName}{Case Identifier}
+\newcommand{\AuthorName}{Author / Analyst}
+\newcommand{\InstitutionName}{Institution / Laboratory}
+\newcommand{\ReportDate}{\today}
+\newcommand{\ReportVersion}{v1.0}
+\newcommand{\SoftwareName}{FLUKA / AutoFLUKA}
+\newcommand{\SoftwareVersion}{Specify version if known}
+\newcommand{\WorkingFolderTag}{run-folder-name}
+
+% =========================
+% Helper commands
+% =========================
+\newcommand{\placeholder}[1]{\textcolor{red}{[#1]}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\newcommand{\unitfmt}[1]{\,\mathrm{#1}}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Allow compilation even when placeholder image files are not yet provided
+\setkeys{Gin}{draft}
+\makeatletter
+\let\AutoFLUKAOriginalIncludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \IfFileExists{#2}{%
+    \AutoFLUKAOriginalIncludegraphics[#1]{#2}%
+  }{%
+    \fbox{\begin{minipage}[c][0.18\textheight][c]{0.92\linewidth}\centering\small Missing image: \detokenize{#2}\end{minipage}}%
+  }%
+}
+\makeatother
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible,
+  showstringspaces=false,
+  keywordstyle=\color{blue},
+  commentstyle=\color{teal!70!black},
+  rulecolor=\color{black!30}
+}
+
+% =========================
+% Document start (Title page + Abstract are NOT numbered sections)
+% =========================
+\begin{document}
+
+\begin{titlepage}
+    \hypersetup{pageanchor=false}
+    \centering
+    {\Large \InstitutionName \par}
+    \vspace{1.5cm}
+    {\LARGE\bfseries \ReportTitle \par}
+    \vspace{0.6cm}
+    {\large AutoFLUKA technical report (auto-populated template) \par}
+    \vspace{1.5cm}
+
+    \begin{tabular}{rl}
+        \textbf{Project:} & \ProjectName \\
+        \textbf{Case:} & \CaseName \\
+        \textbf{Analyst:} & \AuthorName \\
+        \textbf{Software:} & \SoftwareName \\
+        \textbf{Software Version:} & \SoftwareVersion \\
+        \textbf{Report Version:} & \ReportVersion \\
+        \textbf{Date:} & \ReportDate \\
+        \textbf{Folder Tag:} & \WorkingFolderTag \\
+    \end{tabular}
+
+    \vfill
+    \begin{minipage}{0.9\textwidth}
+    \small
+    \textbf{Template intent.} This template is designed for Monte Carlo radiation-transport campaigns executed with FLUKA and post-processed by AutoFLUKA. Replace placeholders only when required; otherwise allow AutoFLUKA to populate sections deterministically from run artifacts.
+    \end{minipage}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\begin{abstract}
+\placeholder{Abstract: brief summary of the problem setup, methodology, main findings, and significance.}
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% =========================
+\section{Introduction and Background}
+\label{sec:intro}
+\placeholder{Background context for the application area and why FLUKA/Monte Carlo is used.}
+
+\subsection{Problem Statement and Objective}
+\label{sec:problem_objective}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Application area:} \placeholder{dosimetry | shielding | activation | detector response | accelerator | medical physics | other}
+  \item \textbf{Problem being studied:} \placeholder{physical or engineering problem}
+  \item \textbf{Objective:} \placeholder{what question the simulation answers}
+  \item \textbf{Scope and limitations:} \placeholder{main assumptions and boundaries}
+\end{itemize}
+
+% =========================
+\section{Project / Campaign Overview}
+\label{sec:campaign}
+\placeholder{Describe the campaign structure (smoke test vs production runs, copies/seeds), what changed across runs, and where outputs live (autofluka\_results/, Decrypted/).}
+
+% =========================
+\section{Simulation Methodology}
+\label{sec:method}
+
+\subsection{Code and execution context}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Code:} FLUKA
+  \item \textbf{FLUKA version:} \placeholder{if known}
+  \item \textbf{Execution environment:} \placeholder{local | docker | wsl | other}
+  \item \textbf{Workflow summary:} \placeholder{AutoFLUKA workflow summary}
+\end{itemize}
+
+\subsection{Model definition (geometry, materials, source, physics)}
+\placeholder{Concise geometry/materials summary, source/beam conditions, and key physics/transport settings.}
+
+\subsection{Scoring plan and statistical strategy}
+\begin{table}[H]
+\centering
+\caption{Scoring plan and quantities of interest.}
+\label{tab:scoring_plan}
+\begin{tabularx}{\textwidth}{l Y c Y}
+\toprule
+\textbf{Scoring card / output} & \textbf{Quantity} & \textbf{Units} & \textbf{Reason for inclusion} \\
+\midrule
+\placeholder{USRBIN} & \placeholder{energy deposition map} & \placeholder{GeV/cm$^3$ per primary} & \placeholder{where dose/energy is deposited} \\
+\placeholder{USRTRACK} & \placeholder{fluence spectrum} & \placeholder{1/cm$^2$ per primary} & \placeholder{spectrum at region of interest} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Number of primaries:} \placeholder{START / NPS}
+  \item \textbf{Number of runs/copies:} \placeholder{N}
+  \item \textbf{Uncertainty target (if used):} \placeholder{target}
+\end{itemize}
+
+\subsection{FLUKA input summary}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Canonical input file:} \code{\placeholder{input\_filename}}
+  \item \textbf{Key regions/material assignments:} \placeholder{summary}
+  \item \textbf{Important non-default cards:} \placeholder{summary}
+  \item \textbf{Reproducibility note:} \placeholder{what must remain unchanged}
+\end{itemize}
+
+\subsection{Post-processing workflow}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Decryption:} \placeholder{summary; mention Decrypted/}
+  \item \textbf{Structured data products:} \placeholder{fluka\_data.json, detector\_index.json, sidecars}
+  \item \textbf{Derived analyses:} \placeholder{plots, slices, isotope summaries}
+\end{itemize}
+
+% =========================
+\section{Troubleshooting and Repairs}
+\label{sec:troubleshooting}
+\placeholder{Summarize failures, signatures, root causes, and applied fixes. Prefer the root autofluka_run_fixes.md audit file when available.}
+
+% =========================
+\section{Results and Discussion}
+\label{sec:results}
+
+\subsection{Main numerical results}
+\begin{table}[H]
+\centering
+\caption{Main numerical results.}
+\label{tab:main_results}
+\begin{tabularx}{\textwidth}{l c c Y}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Uncertainty} & \textbf{Notes} \\
+\midrule
+\placeholder{metric} & \placeholder{value} & \placeholder{uncertainty} & \placeholder{note} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Figures}
+\placeholder{Insert only figures that actually exist; reference them by relative path.}
+
+\subsection{Statistical quality}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Average uncertainties:} \placeholder{summary}
+  \item \textbf{Low-statistics detectors:} \placeholder{summary}
+  \item \textbf{Reliability note:} \placeholder{summary}
+\end{itemize}
+
+% =========================
+\section{Reproducibility Notes}
+\label{sec:repro}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Files required to reproduce:} \placeholder{list}
+  \item \textbf{Generated artifacts used in this report:} \placeholder{list}
+  \item \textbf{Important run settings:} \placeholder{settings that must match}
+  \item \textbf{TODO items remaining:} \placeholder{list or none}
+\end{itemize}
+
+\subsection{Lessons learned}
+\label{sec:lessons}
+\begin{itemize}[leftmargin=1.5em]
+  \item \placeholder{Lesson 1}
+  \item \placeholder{Lesson 2}
+\end{itemize}
+
+% =========================
+\section{Conclusion}
+\label{sec:conclusion}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Main takeaway:} \placeholder{main conclusion}
+  \item \textbf{Was the objective achieved?} \placeholder{yes/no with reason}
+  \item \textbf{Recommended next steps:} \placeholder{follow-up work}
+\end{itemize}
+
+\section*{References}
+\addcontentsline{toc}{section}{References}
+\begin{enumerate}[leftmargin=1.8em]
+  \item \placeholder{FLUKA manual or primary reference}
+  \item \placeholder{paper/report/benchmark reference if used}
+\end{enumerate}
+
+\end{document}

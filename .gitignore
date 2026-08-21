@@ -1,0 +1,8 @@
+AutoFLUKA-2.0/codebase/
+**/.env
+**/node_modules/
+**/__pycache__/
+**/dist/
+*.log
+*.out
+*.err

@@ -1,0 +1,97 @@
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+TITLE
+SPALLATION EXAMPLE - TARGET/CAN/FUEL/BLANKET/VESSEL (GENERIC)
+* Axis convention reminder (FLUKA/FLAIR viewer default):
+*   x is vertical (up), z is horizontal (left->right), y completes right-hand rule.
+* Default beam direction in this example is +z.
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+DEFAULTS                                                              HADROTHE
+*
+* Beam: 800 MeV protons, along +z, starting upstream of the target face.
+BEAM          -0.800                                                  PROTON
+BEAMPOS          0.0       0.0      -10.         0         0
+*
+* ------------------------------------------------------------------
+* Geometry (all dimensions in cm):
+* - Beam pipe:    z = -20.0 to 0.0,  r = 2.0
+* - Window:       z = 0.0  to 0.1,  r = 5.2
+* - Target:       z = 0.1  to 30.1, r = 5.0
+* - Can:          z = 0.1  to 30.1, r = 5.0 to 5.2
+* - Fuel ring:    z = 0.1  to 30.1, r = 5.2 to 6.0
+* - Blanket:      z = 0.1  to 30.1, r = 6.0 to 12.0
+* - Vessel wall:  z = 0.1  to 30.1, r = 12.0 to 13.0
+* ------------------------------------------------------------------
+GEOBEGIN                                                              COMBNAME
+    0    0          Spallation example: concentric annular layers
+RPP WORLD      -200.0 200.0 -200.0 200.0 -150.0 250.0
+RPP AIRBOX     -40.0 40.0 -40.0 40.0 -40.0 90.0
+RCC BPIP       0.0 0.0 -20.0 0.0 0.0 20.0 2.0
+RCC WIND       0.0 0.0 0.0 0.0 0.0 0.1 5.2
+RCC TARG       0.0 0.0 0.1 0.0 0.0 30.0 5.0
+RCC TCANO      0.0 0.0 0.1 0.0 0.0 30.0 5.2
+RCC FUELO      0.0 0.0 0.1 0.0 0.0 30.0 6.0
+RCC BLNKO      0.0 0.0 0.1 0.0 0.0 30.0 12.0
+RCC VWALO      0.0 0.0 0.1 0.0 0.0 30.0 13.0
+END
+BH           5 +WORLD -AIRBOX
+AIR          5 +AIRBOX -BPIP -WIND -VWALO
+PIPE         5 +BPIP
+WIN          5 +WIND
+TG           5 +TARG
+TCAN         5 +TCANO -TARG
+FUEL         5 +FUELO -TCANO
+BLANK        5 +BLNKO -FUELO
+VWALL        5 +VWALO -BLNKO
+END
+GEOEND
+*
+* Materials: prefer built-ins where possible (avoids accidental overrides).
+* If you introduce custom materials and need low-energy neutron data, you may
+* also need LOW-MAT mapping appropriate to your library setup.
+MATERIAL        92.0     235.0     18.95                               235-U
+ASSIGNMA      VACUUM      PIPE
+ASSIGNMA        IRON       WIN
+ASSIGNMA        LEAD        TG
+ASSIGNMA        IRON      TCAN
+ASSIGNMA       235-U      FUEL
+ASSIGNMA      CARBON     BLANK
+ASSIGNMA        IRON     VWALL
+ASSIGNMA         AIR       AIR
+ASSIGNMA    BLCKHOLE        BH
+*
+PHYSICS          3.0       0.0       0.0       0.0       0.0       0.0EVAPORAT
+*
+* Boundary-crossing neutron fluence/current through radial interfaces.
+USRBDX          99.0   NEUTRON     -30.0        TG      TCAN     900.0TGCN
+USRBDX          20.0    1.0E-9     120.0                 0.0      20.0 &
+USRBDX          99.0   NEUTRON     -31.0      TCAN      FUEL     900.0CNFU
+USRBDX          20.0    1.0E-9     120.0                 0.0      20.0 &
+USRBDX          99.0   NEUTRON     -32.0      FUEL     BLANK    900.0FUBL
+USRBDX          20.0    1.0E-9     120.0                 0.0      20.0 &
+USRBDX          99.0   NEUTRON     -33.0     VWALL       AIR     900.0VWAR
+USRBDX          20.0    1.0E-9     120.0                 0.0      20.0 &
+*
+* Neutron spectra in selected regions.
+USRTRACK        -1.0   NEUTRON     -34.0        TG    2000.0       120TGSP
+USRTRACK        20.0    1.0E-9                                         &
+USRTRACK        -1.0   NEUTRON     -35.0      FUEL    2000.0       120FUSP
+USRTRACK        20.0    1.0E-9                                         &
+USRTRACK        -1.0   NEUTRON     -36.0     BLANK    2000.0       120BLSP
+USRTRACK        20.0    1.0E-9                                         &
+*
+* 3D meshes around the assembly (cartesian).
+USRBIN          10.0    ENERGY     -37.0      20.0      20.0      25.0EALL
+USRBIN         -20.0     -20.0     -10.0      80.0      80.0      70.0 &
+USRBIN          10.0   NEUTRON     -38.0      20.0      20.0      25.0NALL
+USRBIN         -20.0     -20.0     -10.0      80.0      80.0      70.0 &
+*
+* Residual nuclei production in key solid regions.
+RESNUCLEi        3.0     -40.0       0.0       0.0       5.0   2000.0      RNTG
+RESNUCLEi        3.0     -41.0       0.0       0.0       6.0   2000.0      RNCA
+RESNUCLEi        3.0     -42.0       0.0       0.0       7.0   2000.0      RNFU
+RESNUCLEi        3.0     -43.0       0.0       0.0       8.0   2000.0      RNBL
+RESNUCLEi        3.0     -44.0       0.0       0.0       9.0   2000.0      RNVW
+*
+RANDOMIZ         1.0   7654321
+START        1.0E+06
+STOP

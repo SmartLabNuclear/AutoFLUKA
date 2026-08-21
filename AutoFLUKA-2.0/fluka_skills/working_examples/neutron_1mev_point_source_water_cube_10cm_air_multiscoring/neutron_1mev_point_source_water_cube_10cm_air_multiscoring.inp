@@ -1,0 +1,40 @@
+TITLE
+1 MeV neutron point source in air irradiating a 5 cm water cube
+DEFAULTS                                                              HADROTHE
+*
+BEAM       -1.00E-03                                                  NEUTRON
+BEAMPOS          0.0       0.0     -22.5
+BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
+*
+GEOBEGIN                                                              COMBNAME
+    0    0
+RPP world      -100.0 +100.0 -100.0 +100.0 -100.0 +100.0
+RPP airbox      -50.0  +50.0  -50.0  +50.0  -50.0  +50.0
+RPP watbox       -2.5   +2.5   -2.5   +2.5   -2.5   +2.5
+END
+regBH        5 +world -airbox
+regAIR       5 +airbox -watbox
+regWAT       5 +watbox
+END
+GEOEND
+*
+ASSIGNMA    BLCKHOLE     regBH
+ASSIGNMA         AIR    regAIR
+ASSIGNMA       WATER    regWAT
+*
+EMFCUT        -1E-06      1E-6              regAIR  @LASTREG
+EMFCUT        -1E-06      1E-6              regWAT  @LASTREG
+MULSOPT                      1       2.0         1         1          GLOBHAD
+*
+USRTRACK        -1.0   NEUTRON     -31.0    regWAT     125.0     100.0   NTRKWAT
+USRTRACK      1.0E-3    1.0E-9    -100.0                                       &
+USRBDX          99.0   NEUTRON     -32.0    regAIR    regWAT     150.0   AIR2WAT
+USRBDX        1.0E-3    1.0E-9     100.0                                       &
+USRBIN          10.0    ENERGY     -33.0      10.0      10.0      10.0   EDEPWAT
+USRBIN         -10.0     -10.0     -10.0      40.0      40.0      40.0         &
+USRBIN          10.0      DOSE     -34.0      10.0      10.0      10.0   DOSEWAT
+USRBIN         -10.0     -10.0     -10.0      40.0      40.0      40.0         &
+*
+RANDOMIZ         1.0    145789
+START        5000000.0
+STOP
