@@ -1,0 +1,52 @@
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+TITLE
+70 MeV proton beam on 5 cm water sphere in air
+DEFAULTS                                                              HADROTHE
+*
+BEAM          -0.070                                                  PROTON
+BEAMPOS          0.0       0.0     -25.0
+BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
+*
+GEOBEGIN                                                              COMBNAME
+    0    0
+RPP world      -100.0 +100.0 -100.0 +100.0 -100.0 +100.0
+RPP airbox      -50.0  +50.0  -50.0  +50.0  -50.0  +50.0
+SPH watsph        0.0    0.0    0.0    5.0
+END
+regBH        5 +world -airbox
+regAIR       5 +airbox -watsph
+regWAT       5 +watsph
+END
+GEOEND
+*
+ASSIGNMA    BLCKHOLE     regBH
+ASSIGNMA         AIR    regAIR
+ASSIGNMA       WATER    regWAT
+*
+* Electron/positron and photon transport and production thresholds
+EMFCUT        -1E-06      1E-6              regAIR  @LASTREG
+EMFCUT        -1E-06      1E-6            BLCKHOLE  @LASTMAT          PROD-CUT
+*
+* Low-energy proton transport threshold in GeV
+PART-THR      -1E-05    PROTON
+MULSOPT                      1       2.0         1         1          GLOBHAD
+*
+* Dose in a 10 cm cube enclosing the water sphere
+USRBIN          10.0      DOSE       -30       5.0       5.0       5.0DOSEBOX
+USRBIN          -5.0      -5.0      -5.0       100       100       100 &
+*
+* Track-length proton fluence in the water sphere
+USRTRACK        -1.0    PROTON       -31    regWAT     523.599     120TRKFLU
+USRTRACK        0.07    1.0E-6        -6                               &
+*
+* Boundary-crossing proton fluence from air into water
+USRBDX           99.    PROTON       -32    regAIR    regWAT          AWAT
+USRBDX          0.07    1.0E-6       120       0.0                     &
+*
+* Energy deposition in a 10 cm cube enclosing the water sphere
+USRBIN          10.0    ENERGY       -33       5.0       5.0       5.0EDEPBOX
+USRBIN          -5.0      -5.0      -5.0       100       100       100 &
+*
+RANDOMIZ         1.0    145789
+START        5000000
+STOP

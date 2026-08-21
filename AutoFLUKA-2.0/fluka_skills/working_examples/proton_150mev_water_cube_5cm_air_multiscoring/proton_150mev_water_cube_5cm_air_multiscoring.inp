@@ -1,0 +1,48 @@
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+TITLE
+150 MeV proton beam irradiating a 5 cm water cube phantom
+DEFAULTS                                                              HADROTHE
+*
+BEAM          -0.150                                                  PROTON
+BEAMPOS          0.0       0.0     -20.0
+BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
+*
+GEOBEGIN                                                              COMBNAME
+    0    0          
+RPP world      -100.0 +100.0 -100.0 +100.0 -100.0 +100.0
+RPP airbox     -50.0 +50.0 -50.0 +50.0 -50.0 +50.0
+RPP watbox     -2.5 +2.5 -2.5 +2.5 -2.5 +2.5
+END
+regBH        5 +world -airbox
+regAIR       5 +airbox -watbox
+regWAT       5 +watbox
+END
+GEOEND
+*
+ASSIGNMA    BLCKHOLE     regBH
+ASSIGNMA         AIR    regAIR
+ASSIGNMA       WATER    regWAT
+*
+EMFCUT        -1E-06      1E-6              regAIR  @LASTREG
+EMFCUT        -1E-06      1E-6            BLCKHOLE  @LASTMAT          PROD-CUT
+MULSOPT                      1       2.0         1         1          GLOBHAD
+*
+* Dose in water cube (Cartesian mesh over watbox)
+USRBIN          10.0      DOSE       -30       3.0       3.0       3.0DOSEWAT
+USRBIN          -3.0      -3.0      -3.0       100       100       100 &
+*
+* Track-length proton fluence in water region
+USRTRACK          -1    PROTON       -31    regWAT                 100TRKFLU
+USRTRACK        0.15    1.0E-6        -6                               &
+*
+* Boundary-crossing proton fluence from air to water
+USRBDX           99.    PROTON       -32    regAIR    regWAT          UWAT
+USRBDX          0.15    1.0E-6       100        .0                     &
+*
+* Energy deposition mesh in water cube
+USRBIN          10.0    ENERGY       -33       3.0       3.0       3.0EDEPWAT
+USRBIN          -3.0      -3.0      -3.0       100       100       100 &
+*
+RANDOMIZ         1.0    145789
+START        5000000
+STOP

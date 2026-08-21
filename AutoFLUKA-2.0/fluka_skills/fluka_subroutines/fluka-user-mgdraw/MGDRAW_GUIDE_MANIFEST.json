@@ -1,0 +1,16 @@
+{
+  "guide": "MGDRAW_GUIDE.md",
+  "status": "publication_safe_interface_summary",
+  "scope": "MGDRAW user-routine guide and examples",
+  "routine_interface_summary": [
+    "SUBROUTINE MGDRAW",
+    "ENTRY BXDRAW",
+    "ENTRY EEDRAW",
+    "ENTRY ENDRAW",
+    "ENTRY SODRAW",
+    "ENTRY USDRAW"
+  ],
+  "source_policy": "The Markdown guide/examples use original prose and pseudocode only. They do not require, embed, or redistribute FLUKA-distributed Fortran files.",
+  "user_guidance": "If editing is required, use a user-provided .f file in the case/run workspace or a template copied by the user from their own licensed FLUKA installation.",
+  "manual_basis": "Official FLUKA Manual PDF, 2024, plus version-specific verification against the user's installed FLUKA manual/release."
+}

@@ -1,0 +1,63 @@
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+TITLE
+Pion fluence and boundary current in a three-slab beryllium target
+DEFAULTS                                                              HADROTHE
+*
+BEAM      -3.000E-01                                                  PION+
+BEAMPOS          0.0       0.0      -9.0
+*
+GEOBEGIN                                                              COMBNAME
+    0    0
+RPP world      -100.0 +100.0 -100.0 +100.0 -100.0 +100.0
+RPP vacbox      -50.0  +50.0  -50.0  +50.0  -50.0  +50.0
+RPP airbox      -10.0  +10.0  -10.0  +10.0  -10.0  +20.0
+RPP boxup       -10.0  +10.0  -10.0  +10.0  -10.0   +0.0
+RPP boxmid      -10.0  +10.0  -10.0  +10.0   +0.0   +9.0
+RPP boxdn       -10.0  +10.0  -10.0  +10.0   +9.0  +20.0
+RPP slab1        -1.0   +1.0   -1.0   +1.0    0.0   +3.0
+RPP slab2        -1.0   +1.0   -1.0   +1.0    3.0   +6.0
+RPP slab3        -1.0   +1.0   -1.0   +1.0    6.0   +9.0
+END
+regBH        5 +world -vacbox
+regVAC       5 +vacbox -airbox
+regAUP       5 +boxup
+regAIR       5 +boxmid -slab1 -slab2 -slab3
+regADN       5 +boxdn
+regUP        5 +slab1
+regMID       5 +slab2
+regDWN       5 +slab3
+END
+GEOEND
+*
+ASSIGNMA    BLCKHOLE     regBH
+ASSIGNMA      VACUUM    regVAC
+ASSIGNMA         AIR    regAUP
+ASSIGNMA         AIR    regAIR
+ASSIGNMA         AIR    regADN
+ASSIGNMA    BERYLLIU     regUP
+ASSIGNMA    BERYLLIU    regMID
+ASSIGNMA    BERYLLIU    regDWN
+*
+* Pion fluence in the three slabs and in the surrounding air region
+USRTRACK        -1.0    PION+     -30.0     regUP       0.0     120.0 FLUUP
+USRTRACK        0.12    1.0E-6     120.0                              &
+USRTRACK        -1.0    PION+     -31.0    regMID       0.0     120.0 FLUMID
+USRTRACK        0.12    1.0E-6     120.0                              &
+USRTRACK        -1.0    PION+     -32.0    regDWN       0.0     120.0 FLUDWN
+USRTRACK        0.12    1.0E-6     120.0                              &
+USRTRACK        -1.0    PION+     -33.0    regAIR       0.0     120.0 FLUAIR
+USRTRACK        0.12    1.0E-6     120.0                              &
+*
+* Pion boundary current at entrance, slab interfaces, and exit
+USRBDX          16.0    PION+     -34.0    regAUP     regUP       0.0 BDXENT
+USRBDX          0.12    1.0E-6     120.0                              &
+USRBDX          16.0    PION+     -35.0     regUP    regMID       0.0 BDX12
+USRBDX          0.12    1.0E-6     120.0                              &
+USRBDX          16.0    PION+     -36.0    regMID    regDWN       0.0 BDX23
+USRBDX          0.12    1.0E-6     120.0                              &
+USRBDX          16.0    PION+     -37.0    regDWN    regADN       0.0 BDXEXT
+USRBDX          0.12    1.0E-6     120.0                              &
+*
+RANDOMIZ         1.0    145789
+START         200000
+STOP

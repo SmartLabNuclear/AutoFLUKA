@@ -1,0 +1,50 @@
+# AutoFLUKA — Docker Compose deployment
+#
+# Prerequisites: Docker Desktop (Windows/macOS) or Docker Engine (Linux), and
+# a filled-in `.env` file (copy `AutoFLUKA-2.0/fluka_skills/.env.example` —
+# see Part 2 of the README).
+#
+# Quick start:
+#   docker compose up -d             start in background (pulls the image automatically)
+#   docker compose logs -f           follow live logs
+#   docker compose down              stop and remove the container
+#   docker compose up -d --pull always   pull the latest image and restart
+#
+# To pin a specific build instead of the rolling `latest` tag, change the
+# `image:` line below to a dated tag, e.g. `zev94/autofluka-2.0:2026-08-21`,
+# or `zev94/autofluka-2.0:2.0` for the original frozen paper build.
+# Full tag list: https://hub.docker.com/r/zev94/autofluka-2.0/tags
+#
+# FLUKA execution (optional): to run actual FLUKA simulations (not just
+# chat/RAG), install FLUKA in your WSL/Linux environment, then uncomment the
+# FLUKADATA/RFLUKA_BIN environment lines and the FLUKA volume mount below,
+# and run `docker compose` from your WSL/Linux terminal, not PowerShell —
+# see the Troubleshooting section in the README for why.
+#
+# Volume paths (left-hand side) are machine-specific — edit before first run.
+
+services:
+  autofluka:
+    image: zev94/autofluka-2.0:latest
+    container_name: autofluka-app
+    restart: unless-stopped
+    ports:
+      - "8050:8000"
+    env_file: .env
+    environment:
+      - AUTOFLUKA_LOG_DIR=/autofluka/AutoFLUKA_logs
+      - AUTOFLUKA_SESSION_DIR=/autofluka/AutoFLUKA_Sessions
+      - AUTOFLUKA_HOST_MOUNT=/host
+      # ── Uncomment for FLUKA execution mode ──────────────────────────────
+      # - FLUKADATA=/usr/local/fluka/data
+      # - RFLUKA_BIN=/usr/local/fluka/bin/rfluka
+    volumes:
+      # FLUKA Skills — downloaded from this repo's AutoFLUKA-2.0/fluka_skills.
+      - "./fluka_skills:/autofluka/fluka_skills"
+      # Logs and session history — never baked into the image.
+      - "./AutoFLUKA_logs:/autofluka/AutoFLUKA_logs"
+      - "./AutoFLUKA_Sessions:/autofluka/AutoFLUKA_Sessions"
+      # Your working directory — replace with the folder you chose in Part 2.
+      - "C:/path/to/your/working-directory:/host"
+      # ── Uncomment for FLUKA execution mode (WSL/Linux path to your install) ──
+      # - "/usr/local/fluka:/usr/local/fluka:ro"
