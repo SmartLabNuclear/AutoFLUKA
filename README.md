@@ -1,4 +1,17 @@
-> 💬 **Using AutoFLUKA (or its related tools/papers)?** I'd genuinely appreciate ~5 minutes of your feedback, it directly shapes what gets prioritized next: [Share your experience](https://forms.gle/bU5th8vfPXdcxbNT9)
+
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/SmartLabNuclear/AutoFLUKA?style=social)](https://github.com/SmartLabNuclear/AutoFLUKA/stargazers)
+![Python 3.12.13](https://img.shields.io/badge/Python-3.12.13-brightgreen.svg)
+[![Built with LangChain](https://img.shields.io/badge/Built%20with-LangChain-1C3C3C.svg)](https://www.langchain.com/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/zev94/autofluka-2.0.svg)](https://hub.docker.com/r/zev94/autofluka-2.0)
+[![Last Commit](https://img.shields.io/github/last-commit/SmartLabNuclear/AutoFLUKA.svg)](https://github.com/SmartLabNuclear/AutoFLUKA/commits)
+
+### ⭐ If AutoFLUKA is useful to you, please consider starring the repo, it genuinely helps others discover the project.
+
+### 💬 Using AutoFLUKA (or its related tools/papers)? I'd appreciate ~5 minutes of your feedback, it directly shapes what gets prioritized next: [Share your experience](https://forms.gle/bU5th8vfPXdcxbNT9)
+
+</div>
 
 # AutoFLUKA-2.0
 
