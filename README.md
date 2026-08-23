@@ -15,6 +15,8 @@
 
 The original paper can be found [here](https://www.sciencedirect.com/science/article/pii/S2666546825000874)
 
+> 💬 **Using AutoFLUKA (or its related tools/papers)?** I'd genuinely appreciate ~5 minutes of your feedback, it directly shapes what gets prioritized next: [Share your experience](https://forms.gle/bU5th8vfPXdcxbNT9)
+
 ---
 
 ## Table of Contents
