@@ -1,3 +1,5 @@
+> 💬 **Using AutoFLUKA (or its related tools/papers)?** I'd genuinely appreciate ~5 minutes of your feedback, it directly shapes what gets prioritized next: [Share your experience](https://forms.gle/bU5th8vfPXdcxbNT9)
+
 # AutoFLUKA-2.0
 
 - AutoFLUKA is a locally deployable, domain-intelligent LLM agent framework that streamlines and automates Monte Carlo radiation workflows in FLUKA.
@@ -14,8 +16,6 @@
 - AutoFLUKA introduces JSON-based outputs and a RAG assistant for fast, context-aware troubleshooting.
 
 The original paper can be found [here](https://www.sciencedirect.com/science/article/pii/S2666546825000874)
-
-> 💬 **Using AutoFLUKA (or its related tools/papers)?** I'd genuinely appreciate ~5 minutes of your feedback, it directly shapes what gets prioritized next: [Share your experience](https://forms.gle/bU5th8vfPXdcxbNT9)
 
 ---
 
@@ -347,6 +347,8 @@ AutoFLUKA is part of a broader ecosystem of domain-specific AI agent frameworks 
   Journal article: [Automating Monte Carlo simulations in nuclear engineering with domain knowledge-embedded large language model agents](https://www.sciencedirect.com/science/article/pii/S2666546825000874)
 
 - **March 2026:** Major **AutoFLUKA 2.0** update released with FLUKA Skills for autonomous input generation, execution, and self-healing workflows.
+
+- **August 2026:** FLUKA Skills extended to user-subroutine editing (`SOURCE`, including `source_newgen.f`, `MGDRAW`, `FLUSCW`, `COMSCW`, `USRMED`, `LATTIC`, `UBSSET`, and the `USRINI`/`USROUT`/`USRGLO` family), plus support for user-defined Skills so you can steer AutoFLUKA toward your own lab's conventions. Live [web search](#web-search-optional) now runs on Tavily by default, with Google Custom Search kept as an optional legacy fallback. Setup is also easier: step-by-step API key guides and a one-command Docker Compose launch (see [Part 1](#part-1-prerequisites) and [Part 3](#part-3-run-autofluka)).
 
 ---
 
