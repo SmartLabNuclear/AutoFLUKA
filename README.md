@@ -15,6 +15,12 @@
 
 # AutoFLUKA-2.0
 
+<p align="center">
+  <a href="./AutoFLUKA_GUI.png">
+    <img src="./AutoFLUKA_GUI.png" alt="AutoFLUKA interface" width="720">
+  </a>
+</p>
+
 - AutoFLUKA is a locally deployable, domain-intelligent LLM agent framework that streamlines and automates Monte Carlo radiation workflows in FLUKA.
 - It includes grounded document analysis to deliver accurate, context-aware assistance.
 - All processing runs locally, so your documents, inputs, and simulation data remain in your environment.
@@ -99,15 +105,23 @@ With your API keys ready, set up the folders AutoFLUKA reads from and writes to,
 
 ### Volume Layout
 
-The container uses these logical areas:
+Before you run anything, this is what your AutoFLUKA folder needs to look like:
 
-| Area | Container path | Mode | Purpose |
-|------|----------------|------|---------|
-| FLUKA Skills | `/autofluka/fluka_skills` | read-write | Authoring rules, working examples, troubleshooting knowledge base |
-| Logs | `/autofluka/AutoFLUKA_logs` | read-write | Application logs |
-| Sessions | `/autofluka/AutoFLUKA_Sessions` | read-write | Persistent chat/session history |
-| Working data | `/host` | read-write | Your FLUKA cases, inputs, and outputs |
-| FLUKA install *(optional)* | `/usr/local/fluka` | read-only (`:ro`) | Only needed for full simulation execution mode — see [2A/2B](#option-2-plain-docker-run-legacy) below |
+```text
+AutoFLUKA/                    <- run docker compose from here
+├── docker-compose.yml
+├── .env                      <- your API keys, copied from fluka_skills/.env.example
+├── fluka_skills/              <- bundled, ships with the repo
+├── AutoFLUKA_logs/            <- you create this, can stay empty, will be auto-populated with application logs
+├── AutoFLUKA_Sessions/        <- you create this, will be auto-populated with chat/session history
+└── host/                      <- default location; see below, this can be any folder on your machine
+```
+
+Everything except `AutoFLUKA_logs/`, `AutoFLUKA_Sessions/`, and `host/` already comes from cloning the repo. The next few sections have you create those three.
+
+The `host/` folder above is only what you get if you leave the `- "C:/path/to/your/working-directory:/host"` line in `docker-compose.yml` untouched. It doesn't have to sit next to `docker-compose.yml` at all: point it at any folder anywhere on your machine, an existing FLUKA project folder, a different drive, wherever your case files actually live.
+
+Running full simulation execution mode ([2A](#2a-run-with-fluka-full-simulation-mode)) also needs a Linux FLUKA installation mounted read-only at `/usr/local/fluka` — that's an existing install on your machine (or inside WSL), not a folder you create here.
 
 **Security note:** whatever folder you mount to `/host` is the *only* folder the agent can read or write. It can create and browse subfolders inside it freely, but it cannot reach anything outside it, including parent directories or other drives. Pick a folder you're comfortable giving AutoFLUKA full read/write access to, nothing more.
 
