@@ -39,8 +39,8 @@ services:
       # - FLUKADATA=/usr/local/fluka/data
       # - RFLUKA_BIN=/usr/local/fluka/bin/rfluka
     volumes:
-      # FLUKA Skills — downloaded from this repo's AutoFLUKA-2.0/fluka_skills.
-      - "./fluka_skills:/autofluka/fluka_skills"
+      # FLUKA Skills — ships with this repo at AutoFLUKA-2.0/fluka_skills.
+      - "./AutoFLUKA-2.0/fluka_skills:/autofluka/fluka_skills"
       # Logs and session history — never baked into the image.
       - "./AutoFLUKA_logs:/autofluka/AutoFLUKA_logs"
       - "./AutoFLUKA_Sessions:/autofluka/AutoFLUKA_Sessions"
