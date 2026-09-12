@@ -58,6 +58,26 @@ New here? Start with **Part 1** and come back once your API keys are ready.
 
 ## Part 1: Prerequisites
 
+### Get AutoFLUKA
+
+Clone this repository, or download it as a ZIP if you don't have git installed:
+
+```bash
+git clone https://github.com/SmartLabNuclear/AutoFLUKA.git
+cd AutoFLUKA
+```
+
+No git? Use the green **Code → Download ZIP** button on this repo's GitHub page instead, then unzip it.
+
+The default, and simplest, path is to run AutoFLUKA directly from inside this cloned folder. Cloning gives you:
+
+- `docker-compose.yml`, ready to use as-is.
+- `AutoFLUKA-2.0/fluka_skills/`, the bundled FLUKA Skills (authoring rules, working examples, troubleshooting knowledge base) and a `.env.example` template. Required, and already included, so there's nothing to do here.
+
+[Part 2](#part-2-prepare-your-local-directory) has you create the remaining folders (`AutoFLUKA_logs/`, `AutoFLUKA_Sessions/`) and your `.env` file. [Part 3](#part-3-run-autofluka) is where you actually start the container.
+
+Prefer to keep AutoFLUKA's config separate from a git checkout? Copy `docker-compose.yml` and `fluka_skills/` into whatever folder you'd rather run AutoFLUKA from, then treat that folder as "this repo folder" for the rest of these instructions. Most people can skip this and just use the cloned folder as-is.
+
 ### API Keys
 
 You will need the following API keys:
