@@ -348,6 +348,8 @@ Additional simulation workflow screenshots are included in this repository:
 
 ## Troubleshooting
 
+- **Gemini "thinking" models can fail tool calls with a missing `thought_signature` error.** A tool call fails with `Invalid argument provided to Gemini: 400 Function call is missing a thought_signature in functionCall parts...`, sometimes even after an earlier tool call in the same session succeeded. Newer Gemini "thinking" models attach a `thought_signature` to function-call responses that must be threaded back through subsequent turns for multi-step tool-calling to work correctly; fixing it needs `langchain-google-genai>=3.1.0`, which needs `langchain-core>=1.x` -- incompatible with this app's current `langchain==0.3.13`/`langchain-core==0.3.60` stack. Not specific to one Gemini version. **Status: open**, requires a full langchain-ecosystem migration (tracked separately, not yet scheduled). **Workaround:** prefer an OpenAI/GPT model for tool-heavy, multi-step workflows until resolved.
+
 - **First check: terminal must see Docker and FLUKA.**
   Run `docker ps` and `which rfluka`. You should see a running/available Docker setup and a valid FLUKA binary path (for example `/usr/local/fluka/bin/rfluka`).
 
