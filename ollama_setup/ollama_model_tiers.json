@@ -1,0 +1,74 @@
+{
+  "_comment": "Single source of truth for recommend_ollama_model.py and any generated docs. 'confirmed_models' means someone on this project has actually run this exact model through AutoSAM/RADIANT-LLM/AutoFLUKA's tool-calling flow and it worked -- not just 'should fit in VRAM'. Each confirmed model carries a 'confirmed_hardware' list -- one entry per machine/GPU it's been independently verified on, so the same model can accumulate multiple confirmations over time instead of only ever recording the first one. 'suggested_models' are untested guesses (same model confirmed at a nearby tier, or a well-known model) -- flag them as such to users, never claim they're verified. 'param_billions' ranks models within/across tiers so the script can recommend the biggest confirmed model your hardware can run, not just whatever happens to match your exact tier -- a model confirmed on LESS VRAM than you have is assumed to also run on yours (same or less CPU/GPU offload, same weights), so it stays eligible for recommendation. Do not duplicate a model into a higher tier's suggested_models purely to make it visible there; the script does that cross-tier lookup automatically from param_billions + the tier it was actually confirmed on.",
+  "schema_version": 1,
+  "last_reviewed": "2026-09-14",
+  "vram_tiers": [
+    {
+      "min_vram_gb": 8,
+      "max_vram_gb": 11.9,
+      "confirmed_models": [
+        {
+          "model": "qwen3.6:35b-128k",
+          "param_billions": 35,
+          "pullable": false,
+          "base_model": "qwen3.6:35b",
+          "build_recipe": {
+            "modelfile": "ollama_setup/Modelfile.qwen3.6-35b-128k",
+            "commands": [
+              "ollama pull qwen3.6:35b",
+              "ollama create qwen3.6:35b-128k -f ollama_setup/Modelfile.qwen3.6-35b-128k"
+            ]
+          },
+          "notes": "Custom local build: qwen3.6:35b with context extended to 131072 tokens (128k) plus adjusted sampling params, built via the included Modelfile -- not a registry tag, `ollama pull qwen3.6:35b-128k` will fail. The plain qwen3.6:35b base (default context, directly pullable) has not been independently tested for tool-calling on its own.",
+          "confirmed_hardware": [
+            {
+              "hardware": "NVIDIA RTX 4060, 8GB VRAM (Windows)",
+              "date": "2026-09-13",
+              "notes": "Runs via Ollama's automatic CPU/GPU layer offload, not fully in VRAM. Slower than full-GPU inference but tool-calling confirmed working."
+            },
+            {
+              "hardware": "NVIDIA RTX PRO 3000 (Blackwell) Laptop GPU, 12GB VRAM class (Windows)",
+              "date": "2026-09-14",
+              "notes": "Confirmed via a live SAM input execution/error-resolution session in AutoSAM: model correctly invoked file reads, background job execution, log/JSON parsing, skill consultation, and ERKB error-database search in sequence. Context window loaded correctly at 131,072 tokens."
+            }
+          ]
+        }
+      ],
+      "suggested_models": []
+    },
+    {
+      "min_vram_gb": 12,
+      "max_vram_gb": 15.9,
+      "confirmed_models": [
+        {
+          "model": "qwen2.5:14b",
+          "param_billions": 14,
+          "notes": "Directly pullable from the Ollama registry, default context window.",
+          "confirmed_hardware": [
+            {
+              "hardware": "NVIDIA RTX PRO 3000 (Blackwell) Laptop GPU, 12GB VRAM class (Windows)",
+              "date": "2026-09-13",
+              "notes": "Confirmed tool-calling (web search) working. Note: this exact card reports 11.9-12.0 GB total VRAM to nvidia-smi depending on the machine/driver -- recommend_ollama_model.py rounds to the nearest whole GB before tier lookup so this doesn't get misclassified into the 8GB tier."
+            }
+          ]
+        }
+      ],
+      "suggested_models": []
+    }
+  ],
+  "cpu_only_fallback": {
+    "confirmed_models": [],
+    "suggested_models": [
+      {
+        "model": "phi3:mini",
+        "param_billions": 3.8,
+        "reason": "Commonly recommended lightweight model for CPU-only inference. Not tested for tool-calling in this project."
+      },
+      {
+        "model": "qwen2.5:3b",
+        "param_billions": 3,
+        "reason": "Small enough for CPU-only use. Not tested for tool-calling in this project."
+      }
+    ]
+  }
+}

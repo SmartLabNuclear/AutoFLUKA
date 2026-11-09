@@ -97,6 +97,18 @@ If you want it, AutoFLUKA's live web search runs on Tavily, free, no credit card
 
 If you separately have a working Google Custom Search key from before, you can also set `CUSTOM_SEARCH_ENGINE_API_KEY` and `CUSTOM_SEARCH_ENGINE_ID`. AutoFLUKA will use it automatically as a silent backup whenever Tavily is unavailable, though this is entirely optional, and most new users should skip it. Google closed that API to new customers in 2025 and will shut it down entirely on January 1, 2027. See the [Google Custom Search guide](LearningCenter/api-key-guides/google-custom-search.md) if you already have access from before that cutoff.
 
+### Local Models via Ollama (Optional)
+
+Prefer to run AutoFLUKA against a local model instead of OpenAI or Gemini? AutoFLUKA's image already supports [Ollama](https://ollama.com) at runtime: if Ollama is running on your host, AutoFLUKA auto-detects it via `host.docker.internal:11434`, no config needed.
+
+To help pick a model, this repo also bundles the same standalone hardware advisor used across AutoFLUKA, AutoSAM, and RADIANT-LLM (all three share the identical Ollama tool-calling architecture, so a model confirmed via any one of them genuinely carries over). After installing Ollama and pulling at least one model, run it from this repo's root:
+
+```bash
+python ollama_setup/recommend_ollama_model.py
+```
+
+It's dependency-free (standard library only) and never installs anything on its own; it only prints the `ollama pull`/`ollama create` commands to run, tailored to your detected GPU/VRAM. See [`ollama_setup/ollama_model_tiers.json`](ollama_setup/ollama_model_tiers.json) for the current catalog.
+
 ### Docker
 
 You will also need [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/macOS) or [Docker Engine](https://docs.docker.com/engine/install/) (Linux).
