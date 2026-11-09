@@ -11,7 +11,7 @@
 #   docker compose up -d --pull always   pull the latest image and restart
 #
 # To pin a specific build instead of the rolling `latest` tag, change the
-# `image:` line below to a dated tag, e.g. `zev94/autofluka-2.0:2026-08-21`,
+# `image:` line below to a dated tag, e.g. `zev94/autofluka-2.0:2026-11-09`,
 # or `zev94/autofluka-2.0:2.0` for the original frozen paper build.
 # Full tag list: https://hub.docker.com/r/zev94/autofluka-2.0/tags
 #

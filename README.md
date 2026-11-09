@@ -126,7 +126,7 @@ Both launch methods in [Part 3](#part-3-run-autofluka) pull the image automatica
 ```bash
 docker pull zev94/autofluka-2.0:latest
 # or pin a specific dated build instead of the rolling tag:
-docker pull zev94/autofluka-2.0:2026-08-21
+docker pull zev94/autofluka-2.0:2026-11-09
 ```
 
 ---
@@ -221,7 +221,7 @@ docker compose up -d
 
 The first time you run this, Docker downloads the AutoFLUKA image from Docker Hub, then starts the container in the background.
 
-To pin a specific dated build instead of the newest rolling build, change `zev94/autofluka-2.0:latest` to a dated tag (e.g. `zev94/autofluka-2.0:2026-08-21`) on the `image:` line. See the [full tag list](https://hub.docker.com/r/zev94/autofluka-2.0/tags) for available dates.
+To pin a specific dated build instead of the newest rolling build, change `zev94/autofluka-2.0:latest` to a dated tag (e.g. `zev94/autofluka-2.0:2026-11-09`) on the `image:` line. See the [full tag list](https://hub.docker.com/r/zev94/autofluka-2.0/tags) for available dates.
 
 **FLUKA execution mode (optional):** by default, `docker-compose.yml` runs AutoFLUKA in chatbot/RAG mode only. To also run actual FLUKA simulations, install FLUKA in your WSL/Linux environment, then uncomment the `FLUKADATA`/`RFLUKA_BIN` environment lines and the FLUKA volume mount in `docker-compose.yml`, and run `docker compose` from your WSL/Linux terminal, not PowerShell (see [Troubleshooting](#troubleshooting) for why).
 
@@ -304,7 +304,7 @@ docker run -d --name autofluka-app \
   zev94/autofluka-2.0:latest
 ```
 
-Replace `C:\path\to\your\...` or `/path/to/your/...` with the folders you chose in Part 2. Pin a dated tag (e.g. `zev94/autofluka-2.0:2026-08-21`), or use `zev94/autofluka-2.0:2.0` for the original frozen paper build, instead of `:latest` for a specific known build.
+Replace `C:\path\to\your\...` or `/path/to/your/...` with the folders you chose in Part 2. Pin a dated tag (e.g. `zev94/autofluka-2.0:2026-11-09`), or use `zev94/autofluka-2.0:2.0` for the original frozen paper build, instead of `:latest` for a specific known build.
 
 Verify, view logs, stop, and remove:
 
