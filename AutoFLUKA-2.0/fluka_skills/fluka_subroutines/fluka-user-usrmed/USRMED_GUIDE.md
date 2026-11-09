@@ -79,19 +79,19 @@ MAT-PROP  WHAT(1)  WHAT(2)  WHAT(3)  WHAT(4)  WHAT(5)  WHAT(6)  USERDIRE
 Pb glass and PMMA (numeric materials 15–18):
 
 ```text
-MAT-PROP     1.0     0.0     0.0    15.0    18.0     3.0    USERDIRE
+MAT-PROP         1.0       0.0       0.0      15.0      18.0       3.0USERDIRE
 ```
 
 Optical photons in materials 17 and 21 (with `OPT-PROP`):
 
 ```text
-MAT-PROP     1.0     0.0     0.0    17.0    21.0     4.0    USERDIRE
+MAT-PROP         1.0       0.0       0.0      17.0      21.0       4.0USERDIRE
 ```
 
 Name-based variant:
 
 ```text
-MAT-PROP     1.0     0.0     0.0    PMMA    LEADGLAS     3.0    USERDIRE
+MAT-PROP         1.0       0.0       0.0      PMMA  LEADGLAS       3.0USERDIRE
 ```
 
 ### Ordering note

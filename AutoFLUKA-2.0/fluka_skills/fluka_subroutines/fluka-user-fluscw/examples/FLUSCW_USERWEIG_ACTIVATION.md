@@ -15,13 +15,15 @@ A shielding study scores neutron track-length fluence in a monitoring region (`R
 ### Scoring card
 
 ```text
-USRTRACK         10.0       1.0       -30.0       REG_MON
+USRTRACK        -1.0   NEUTRON     -30.0   REG_MON    1000.0     100.0NFLUMON
+USRTRACK        0.02   1.0E-14                                        &
 ```
 
-Conceptual checks (verify against installed manual for exact `WHAT(i)` meanings):
+Field reading:
 
-- Logical unit `10` for formatted output (example only).
-- Request track-length fluence in region `REG_MON`.
+- `WHAT(1)` = `-1.0` logarithmic energy bins, `WHAT(2)` = `NEUTRON`, `WHAT(3)` = `-30.0` output unit (negative = binary).
+- `WHAT(4)` = region `REG_MON`; `WHAT(5)` = its volume in cm³ (`1000.0` here). FLUKA does not compute volumes; with the default 1.0 the result is not fluence (see `fluka-authoring/rules/scoring_rules.md`).
+- `WHAT(6)` = 100 bins; the continuation card gives Emax `0.02` GeV and Emin `1.0E-14` GeV.
 
 ### Activation card
 

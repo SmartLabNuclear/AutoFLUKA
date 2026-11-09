@@ -17,13 +17,13 @@ After defining constituent elements, compounds, and materials:
 ```text
 * Materials PMMA and LEADGLAS already defined via MATERIAL/COMPOUND cards
 
-MAT-PROP     1.0     0.0     0.0    PMMA    LEADGLAS     3.0    USERDIRE
+MAT-PROP         1.0       0.0       0.0      PMMA  LEADGLAS       3.0USERDIRE
 ```
 
 ### Numeric-material variant (manual Example 1)
 
 ```text
-MAT-PROP     1.0     0.0     0.0    15.0    18.0     3.0    USERDIRE
+MAT-PROP         1.0       0.0       0.0      15.0      18.0       3.0USERDIRE
 ```
 
 Materials 15 (PMMA) and 18 (LEADGLAS) in the manual numbering example.
@@ -42,7 +42,7 @@ Materials 15 (PMMA) and 18 (LEADGLAS) in the manual numbering example.
 To disable later:
 
 ```text
-MAT-PROP    -1.0     0.0     0.0     ...
+MAT-PROP        -1.0       0.0       0.0      PMMA  LEADGLAS       3.0USERDIRE
 ```
 
 `WHAT(1) < 0` resets USERDIRE to default (no `USRMED` calls).
@@ -52,9 +52,9 @@ MAT-PROP    -1.0     0.0     0.0     ...
 When only specific optical materials need `USRMED`:
 
 ```text
-OPT-PROP     3.E-5   5.E-5   6.E-5   16.0    22.0     0.0    WV-LIMIT
+OPT-PROP       3.E-5     5.E-5     6.E-5      16.0      22.0       0.0WV-LIMIT
 
-MAT-PROP     1.0     0.0     0.0    17.0    21.0     4.0    USERDIRE
+MAT-PROP         1.0       0.0       0.0      17.0      21.0       4.0USERDIRE
 ```
 
 `OPT-PROP` enables optical transport; `MAT-PROP` limits `USRMED` to materials 17 and 21.

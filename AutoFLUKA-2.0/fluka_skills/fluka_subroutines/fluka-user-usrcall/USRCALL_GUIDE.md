@@ -61,7 +61,7 @@ USRGCALL  WHAT(1)  WHAT(2)  WHAT(3)  WHAT(4)  WHAT(5)  WHAT(6)  SDUM
 Manual example (p. 287):
 
 ```text
-USRGCALL    789.   321.    18.0   144.0   -27.0    3.14 SPECIAL
+USRGCALL        789.      321.      18.0     144.0     -27.0      3.14SPECIAL
 ```
 
 ### `USRICALL` → `USRINI` (Sec. 7.89)
@@ -77,7 +77,7 @@ USRICALL  WHAT(1)  WHAT(2)  WHAT(3)  WHAT(4)  WHAT(5)  WHAT(6)  SDUM
 Manual example (p. 288):
 
 ```text
-USRICALL    123.   456.     1.0    -2.0    18.0    18. FLAG12
+USRICALL        123.      456.       1.0      -2.0      18.0       18.FLAG12
 ```
 
 ### `USROCALL` → `USROUT` (Sec. 7.90)
@@ -94,7 +94,7 @@ USROCALL  WHAT(1)  WHAT(2)  WHAT(3)  WHAT(4)  WHAT(5)  WHAT(6)  SDUM
 Manual example (p. 289):
 
 ```text
-USROCALL     17.0    17.0    -5.5     1.1   654.0   321. OK
+USROCALL        17.0      17.0      -5.5       1.1     654.0      321.OK
 ```
 
 ### Recommended deck ordering
@@ -124,7 +124,7 @@ STOP
 | `usrini.f` / `usrout.f` / `usrglo.f` linked | All three may be customized independently |
 | `LUSRIN` / `LUSRGL` lines preserved | Required template flags (see below) |
 | Not mixing with event routines | `USREIN`/`USREOU` are separate |
-| Low-NPS test | `START 1.0E3` before production |
+| Low-NPS test | `START` WHAT(1) = 1000.0 before production (written with `fluka_card_formatter_tool`) |
 
 ### Passing parameters to routines
 

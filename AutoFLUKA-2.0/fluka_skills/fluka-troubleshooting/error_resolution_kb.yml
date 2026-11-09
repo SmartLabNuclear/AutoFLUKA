@@ -122,14 +122,17 @@
     FLUKA fails to parse the `START` line after an edit.
 
     A long numeric literal spills into the next fixed-format field.'
-  background: '`START` value exceeds expected field width or is misaligned for the active input style.
+  background: 'The NPS does not end at column 20, so part of it falls into WHAT(2); FLUKA reads only columns 11-20
+    for WHAT(1) and accepts the fragment without complaint (`START          100000.0` runs 10,000 primaries).
 
     A `test-n` low-NPS value was accidentally propagated into production copies.'
   suggestion:
-  - Use compact scientific notation and keep the line parser-safe.
+  - Rewrite the card so the NPS ends exactly at column 20, preferably with `fluka_card_formatter_tool`. Decimal or
+    exponent both work once right-aligned.
+  - After any production run, compare `Total number of primaries run:` in each `.out` with the requested NPS.
   - Before seeded production runs, restore the intended production NPS after a `test-n` attempt succeeds.
   - 'Example:'
-  - "```text\n    START        1.0E+06\n    ```"
+  - "```text\n    START       100000.0\n    START        1.0E+05\n    ```"
   confidence: medium
   origin: legacy-markdown-conversion
   physics_preservation: required
@@ -541,18 +544,17 @@
     `The 2th field ... START`
 
     `START        1000.         0`'
-  background: 'A generated low-NPS preflight cap was written as an integer (`START          1000`) instead of an explicit
-    Fortran real, or a generated/repaired `START` card used an integer-like extra field such as `0` where the installed
-    FLUKA parser expected a formatted real value.
-
-    The test-run NPS cap was correct, but the START fields were not written with parser-safe real formatting.'
+  background: 'The NPS does not end at column 20. `START          1000` ends at column 19 (an integer followed by a
+    blank: rejected); `START          1000.0` ends at column 21, so its last `0` lands in WHAT(2) as an integer followed
+    by blanks (rejected, "The 2th field 0"). The notation is not the cause; right-aligned decimal, integer and exponent
+    forms all run.'
   suggestion:
-  - Rewrite low-statistics preflight `START` with an explicit real-valued primary count, preferably scientific notation, while preserving the bounded `test-n`
-    NPS limit.
-  - Avoid adding unnecessary integer-like extra WHAT fields when only the primary count is being changed.
-  - For production runs, restore the requested production NPS using the same real-valued fixed-width style.
-  - 'Example:'
-  - "```text\n    START          1.0E3\n    ```"
+  - Rewrite the card with `fluka_card_formatter_tool` so the NPS ends exactly at column 20.
+  - Avoid adding extra WHAT fields when only the primary count is being changed.
+  - For production runs, restore the requested production NPS the same way and check `Total number of primaries run:`
+    in the `.out` afterwards.
+  - 'Example (correct, both ending at column 20):'
+  - "```text\n    START         1000.0\n    START        1.0E+03\n    ```"
   confidence: high
   origin: legacy-markdown-conversion
   physics_preservation: required

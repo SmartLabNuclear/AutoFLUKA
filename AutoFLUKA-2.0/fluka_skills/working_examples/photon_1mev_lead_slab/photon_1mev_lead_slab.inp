@@ -1,0 +1,48 @@
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+TITLE
+1 MeV photon point source, pencil beam, on 2 cm lead slab in vacuum
+DEFAULTS                                                              PRECISIO
+*
+BEAM          -0.001                                                  PHOTON
+BEAMPOS          0.0       0.0     -10.0
+*
+GEOBEGIN                                                              COMBNAME
+    0    0
+RPP world      -100.0 +100.0 -100.0 +100.0 -100.0 +100.0
+RPP fillbox     -50.0  +50.0  -50.0  +50.0  -50.0  +50.0
+RPP leadslb     -20.0  +20.0  -20.0  +20.0    0.0    2.0
+END
+regBH        5 +world -fillbox
+regFILL      5 +fillbox -leadslb
+regLEAD      5 +leadslb
+END
+GEOEND
+*
+ASSIGNMA    BLCKHOLE     regBH
+ASSIGNMA      VACUUM   regFILL
+ASSIGNMA        LEAD   regLEAD
+*
+* Electron/positron and photon transport and production thresholds
+EMFCUT        -1E-06      1E-6             regFILL  @LASTREG
+EMFCUT        -1E-06      1E-6            BLCKHOLE  @LASTMAT          PROD-CUT
+*
+* Dose in a box enclosing the lead slab
+USRBIN          10.0      DOSE       -30      20.0      20.0      10.0DOSEBOX
+USRBIN         -20.0     -20.0      -5.0        40        40        30&
+*
+* Track-length photon fluence in the lead slab
+USRTRACK        -1.0    PHOTON       -31   regLEAD    3200.0          TRKFLU
+USRTRACK      1.0E-3    1.0E-6        -6                              &
+*
+* Boundary-crossing photon fluence from vacuum into the lead slab
+* WHAT(6) = slab surface 2*(40*40) + 4*(40*2) = 3520 cm2
+USRBDX           99.    PHOTON       -32   regFILL   regLEAD    3520.0FILEAD
+USRBDX        1.0E-3    1.0E-6       120       0.0                    &
+*
+* Energy deposition in the same box as the dose scorer
+USRBIN          10.0    ENERGY       -33      20.0      20.0      10.0EDEPBOX
+USRBIN         -20.0     -20.0      -5.0        40        40        30&
+*
+RANDOMIZ         1.0    918273
+START         1000.0
+STOP

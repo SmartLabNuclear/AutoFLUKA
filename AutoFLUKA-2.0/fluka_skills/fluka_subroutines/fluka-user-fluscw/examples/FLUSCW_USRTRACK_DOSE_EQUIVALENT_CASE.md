@@ -22,9 +22,11 @@ Standard `USRTRACK` output is fluence; `FLUSCW` applies the extra factor at accu
 ## Deck excerpt
 
 ```text
-TITLE         Weighted fluence via FLUSCW (dose-equivalent-style response)
+TITLE
+Weighted fluence via FLUSCW (dose-equivalent-style response)
 
-USRTRACK         10.0       1.0       -30.0       REG_MON
+USRTRACK        -1.0   NEUTRON     -30.0   REG_MON    1000.0     100.0NFLUMON
+USRTRACK        0.02   1.0E-14                                        &
 
 USERWEIG         0.0       0.0       4.0       0.0       0.0       0.0
 ```

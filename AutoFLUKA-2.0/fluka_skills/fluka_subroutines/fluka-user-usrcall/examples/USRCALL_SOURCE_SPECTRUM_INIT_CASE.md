@@ -19,19 +19,19 @@ A user-written `SOURCE` samples primary energies from `spectrum.dat` (two column
 ```text
 TITLE
 Custom spectrum source with USRCALL init pipeline
-DEFAULTS         PRECISIO         0.0
-BEAM          -1.0
-BEAMPOS       0.0 0.0 0.0
+DEFAULTS                                                              PRECISIO
+BEAM            -1.0
+BEAMPOS          0.0       0.0       0.0
 
 * --- Stage 0: global — open spectrum file on unit 23 ---
-USRGCALL      23.0   0.0   0.0   0.0   0.0   0.0   SPECOPEN
+USRGCALL        23.0       0.0       0.0       0.0       0.0       0.0SPECOPEN
 
 * ... geometry, materials, etc. ...
 
 * --- Stage 1: read table after materials exist ---
-USRICALL       0.0   0.0   0.0   0.0   0.0   0.0   LOADSP
+USRICALL         0.0       0.0       0.0       0.0       0.0       0.0LOADSP
 
-SOURCE         1.0   0.0   0.0   0.0   0.0   0.0
+SOURCE           1.0       0.0       0.0       0.0       0.0       0.0
 PHYSICS        ...
 USRTRACK       ...
 
@@ -103,7 +103,7 @@ Example format (document in case notes):
 
 | Step | Check |
 |---|---|
-| 1 | Low primaries (`START 1.0E3`); confirm no file-open errors |
+| 1 | Low primaries (`START` WHAT(1) = 1000.0, written with `fluka_card_formatter_tool`); confirm no file-open errors |
 | 2 | Log sampled energies from `SOURCE` (temporary debug in `USRINI` or `SOURCE`) |
 | 3 | Verify histogram of primaries matches input spectrum shape |
 | 4 | Remove debug writes before production |

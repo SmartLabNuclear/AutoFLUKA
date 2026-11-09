@@ -26,7 +26,7 @@ Use `SOURCE` for cases such as:
 
 - external or proprietary energy spectra,
 - spatially extended sources,
-- Gaussian, pencil, annular, isotropic, divergent, or correlated beams beyond what the standard deck conveniently expresses,
+- annular, correlated, or otherwise structured beams beyond what the standard deck expresses (plain Gaussian, pencil, divergent and **isotropic** point beams are all card-level `BEAM` options; see the table below),
 - correlated energy-angle or energy-position sampling,
 - time-dependent source behavior,
 - phase-space replay or source particles read from an external user file,
@@ -41,6 +41,8 @@ Do not use `SOURCE` for tasks better handled by other FLUKA mechanisms:
 
 | User objective | Preferred mechanism |
 |---|---|
+| Simple/point source: fixed particle type, energy, starting position, and direction (including a plain point source with no special distribution) | `BEAM` + `BEAMPOS` (plus `BEAMAXES` if the direction isn't the default) — standard card-level source definition, no user routine at all |
+| Isotropic point source (uniform over 4π) | `BEAM` with WHAT(3) > 2000π mrad (e.g. `10000.0`) and WHAT(4)=WHAT(5)=0, point in `BEAMPOS`; FLUKA ignores the BEAMPOS direction cosines (FLUKA manual, BEAM Note 7). No user routine |
 | Boundary-crossing records, event dumps, phase-space output during transport | `MGDRAW` with the appropriate activation pattern, commonly `USERDUMP` |
 | Fluence-like scoring response weighting | `FLUSCW` with `USERWEIG` activation |
 | Energy-deposition, dose-like, or star-density-like scoring response weighting | `COMSCW` with `USERWEIG` activation |

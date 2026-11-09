@@ -5,7 +5,6 @@ DEFAULTS                                                              HADROTHE
 *
 BEAM          -0.150                                                  PROTON
 BEAMPOS          0.0       0.0     -20.0
-BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
 *
 GEOBEGIN                                                              COMBNAME
     0    0          

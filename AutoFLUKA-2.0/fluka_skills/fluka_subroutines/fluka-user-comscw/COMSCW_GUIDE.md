@@ -102,7 +102,7 @@ Per manual §13.2.2, `COMSCW` weights quantities from:
 Unconditional dose/star weighting:
 
 ```text
-USERWEIG     0.0     0.0     0.0     0.0     0.0     1.0
+USERWEIG         0.0       0.0       0.0       0.0       0.0       1.0
 ```
 
 `COMSCW` called before detector check. Dose and star densities multiplied per user logic.
@@ -110,7 +110,7 @@ USERWEIG     0.0     0.0     0.0     0.0     0.0     1.0
 Detector-checked fluence example (for contrast — uses `FLUSCW`, not `COMSCW`):
 
 ```text
-USERWEIG     0.0     0.0     4.0     0.0     0.0     0.0
+USERWEIG         0.0       0.0       4.0       0.0       0.0       0.0
 ```
 
 ## Input-card syntax and required deck checks

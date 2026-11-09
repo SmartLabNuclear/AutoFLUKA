@@ -1,0 +1,46 @@
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+TITLE
+3 MeV isotropic photon point source at the centre of a 5 cm lead sphere
+DEFAULTS                                                              PRECISIO
+*
+* Isotropic point source: BEAM WHAT(3) above 2000*pi mrad (10000.0) makes FLUKA
+* emit over 4pi; BEAMPOS direction cosines are then ignored. No SOURCE routine.
+BEAM          -0.003       0.0   10000.0       0.0       0.0       1.0PHOTON
+BEAMPOS          0.0       0.0       0.0
+*
+GEOBEGIN                                                              COMBNAME
+    0    0
+RPP world      -100.0 +100.0 -100.0 +100.0 -100.0 +100.0
+RPP fillbox     -50.0  +50.0  -50.0  +50.0  -50.0  +50.0
+SPH leadsph       0.0    0.0    0.0    5.0
+END
+regBH        5 +world -fillbox
+regFILL      5 +fillbox -leadsph
+regLEAD      5 +leadsph
+END
+GEOEND
+*
+ASSIGNMA    BLCKHOLE     regBH
+ASSIGNMA      VACUUM   regFILL
+ASSIGNMA        LEAD   regLEAD
+*
+* Electron/positron and photon transport and production thresholds
+EMFCUT       -1.0E-6    1.0E-6             regFILL  @LASTREG
+EMFCUT       -1.0E-6    1.0E-6            BLCKHOLE  @LASTMAT          PROD-CUT
+*
+* Energy deposition on a mesh centred on the source (1 cm bins): the six
+* half-spaces x<0, x>0, y<0, y>0, z<0, z>0 must agree for an isotropic source
+USRBIN          10.0    ENERGY     -30.0       5.0       5.0       5.0EDEPSPH
+USRBIN          -5.0      -5.0      -5.0      10.0      10.0      10.0&
+*
+* Track-length photon fluence in the lead: WHAT(5) = sphere volume 4/3*pi*5^3
+USRTRACK        -1.0    PHOTON     -31.0   regLEAD   523.599     100.0TRKFLU
+USRTRACK       0.003    1.0E-6                                        &
+*
+* Photon fluence escaping the sphere: WHAT(6) = sphere area 4*pi*5^2
+USRBDX          99.0    PHOTON     -32.0   regLEAD   regFILL   314.159ESCAPE
+USRBDX         0.003    1.0E-6     100.0                              &
+*
+RANDOMIZ         1.0    73519.
+START        20000.0
+STOP

@@ -5,7 +5,6 @@ DEFAULTS                                                              HADROTHE
 *
 BEAM       -4.50E-03                                                  NEUTRON
 BEAMPOS          0.0       0.0     -30.0
-BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
 *
 GEOBEGIN                                                              COMBNAME
     0    0          

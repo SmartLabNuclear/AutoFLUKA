@@ -20,7 +20,7 @@ Enter minimal hadron biasing so FLUKA populates `UBSSET` arguments (values will 
 
 ```text
 * Hadron importance biasing — values overridden in ubsset.f
-BIASING     1.0     1.0     1.0     3.0    20.0     1.0
+BIASING          1.0       1.0       1.0       3.0      20.0       1.0
 ```
 
 | Field | Value | Meaning |
@@ -33,7 +33,7 @@ BIASING     1.0     1.0     1.0     3.0    20.0     1.0
 Optional tuning output:
 
 ```text
-BIASING     1.0     0.0     0.0     3.0     8.0     0.0    PRINT
+BIASING          1.0       0.0       0.0       3.0       8.0       0.0PRINT
 ```
 
 ### No `USIMBS`

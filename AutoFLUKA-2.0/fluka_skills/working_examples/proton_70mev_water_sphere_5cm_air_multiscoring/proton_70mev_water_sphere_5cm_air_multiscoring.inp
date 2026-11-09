@@ -5,7 +5,6 @@ DEFAULTS                                                              HADROTHE
 *
 BEAM          -0.070                                                  PROTON
 BEAMPOS          0.0       0.0     -25.0
-BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
 *
 GEOBEGIN                                                              COMBNAME
     0    0
@@ -33,19 +32,19 @@ MULSOPT                      1       2.0         1         1          GLOBHAD
 *
 * Dose in a 10 cm cube enclosing the water sphere
 USRBIN          10.0      DOSE       -30       5.0       5.0       5.0DOSEBOX
-USRBIN          -5.0      -5.0      -5.0       100       100       100 &
+USRBIN          -5.0      -5.0      -5.0       100       100       100&
 *
 * Track-length proton fluence in the water sphere
-USRTRACK        -1.0    PROTON       -31    regWAT     523.599     120TRKFLU
-USRTRACK        0.07    1.0E-6        -6                               &
+USRTRACK        -1.0    PROTON       -31    regWAT   523.599       120TRKFLU
+USRTRACK        0.07    1.0E-6        -6                              &
 *
 * Boundary-crossing proton fluence from air into water
-USRBDX           99.    PROTON       -32    regAIR    regWAT          AWAT
-USRBDX          0.07    1.0E-6       120       0.0                     &
+USRBDX           99.    PROTON       -32    regAIR    regWAT   314.159AWAT
+USRBDX          0.07    1.0E-6       120       0.0                    &
 *
 * Energy deposition in a 10 cm cube enclosing the water sphere
 USRBIN          10.0    ENERGY       -33       5.0       5.0       5.0EDEPBOX
-USRBIN          -5.0      -5.0      -5.0       100       100       100 &
+USRBIN          -5.0      -5.0      -5.0       100       100       100&
 *
 RANDOMIZ         1.0    145789
 START        5000000

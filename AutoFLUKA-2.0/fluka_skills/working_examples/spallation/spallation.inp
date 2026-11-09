@@ -48,7 +48,7 @@ GEOEND
 * Materials: prefer built-ins where possible (avoids accidental overrides).
 * If you introduce custom materials and need low-energy neutron data, you may
 * also need LOW-MAT mapping appropriate to your library setup.
-MATERIAL        92.0     235.0     18.95                               235-U
+MATERIAL        92.0               18.95                         235.0   235-U
 ASSIGNMA      VACUUM      PIPE
 ASSIGNMA        IRON       WIN
 ASSIGNMA        LEAD        TG
@@ -66,7 +66,7 @@ USRBDX          99.0   NEUTRON     -30.0        TG      TCAN     900.0TGCN
 USRBDX          20.0    1.0E-9     120.0                 0.0      20.0 &
 USRBDX          99.0   NEUTRON     -31.0      TCAN      FUEL     900.0CNFU
 USRBDX          20.0    1.0E-9     120.0                 0.0      20.0 &
-USRBDX          99.0   NEUTRON     -32.0      FUEL     BLANK    900.0FUBL
+USRBDX          99.0   NEUTRON     -32.0      FUEL     BLANK     900.0FUBL
 USRBDX          20.0    1.0E-9     120.0                 0.0      20.0 &
 USRBDX          99.0   NEUTRON     -33.0     VWALL       AIR     900.0VWAR
 USRBDX          20.0    1.0E-9     120.0                 0.0      20.0 &

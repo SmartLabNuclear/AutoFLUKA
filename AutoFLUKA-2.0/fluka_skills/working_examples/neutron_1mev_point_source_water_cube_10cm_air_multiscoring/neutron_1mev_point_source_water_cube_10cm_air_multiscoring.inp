@@ -4,7 +4,6 @@ DEFAULTS                                                              HADROTHE
 *
 BEAM       -1.00E-03                                                  NEUTRON
 BEAMPOS          0.0       0.0     -22.5
-BEAMAXES         0.0       0.0       1.0       1.0       0.0       0.0
 *
 GEOBEGIN                                                              COMBNAME
     0    0
@@ -26,15 +25,15 @@ EMFCUT        -1E-06      1E-6              regAIR  @LASTREG
 EMFCUT        -1E-06      1E-6              regWAT  @LASTREG
 MULSOPT                      1       2.0         1         1          GLOBHAD
 *
-USRTRACK        -1.0   NEUTRON     -31.0    regWAT     125.0     100.0   NTRKWAT
-USRTRACK      1.0E-3    1.0E-9    -100.0                                       &
-USRBDX          99.0   NEUTRON     -32.0    regAIR    regWAT     150.0   AIR2WAT
-USRBDX        1.0E-3    1.0E-9     100.0                                       &
-USRBIN          10.0    ENERGY     -33.0      10.0      10.0      10.0   EDEPWAT
-USRBIN         -10.0     -10.0     -10.0      40.0      40.0      40.0         &
-USRBIN          10.0      DOSE     -34.0      10.0      10.0      10.0   DOSEWAT
-USRBIN         -10.0     -10.0     -10.0      40.0      40.0      40.0         &
+USRTRACK        -1.0   NEUTRON     -31.0    regWAT     125.0     100.0NTRKWAT
+USRTRACK      1.0E-3    1.0E-9    -100.0                              &
+USRBDX          99.0   NEUTRON     -32.0    regAIR    regWAT     150.0AIR2WAT
+USRBDX        1.0E-3    1.0E-9     100.0                              &
+USRBIN          10.0    ENERGY     -33.0      10.0      10.0      10.0EDEPWAT
+USRBIN         -10.0     -10.0     -10.0      40.0      40.0      40.0&
+USRBIN          10.0      DOSE     -34.0      10.0      10.0      10.0DOSEWAT
+USRBIN         -10.0     -10.0     -10.0      40.0      40.0      40.0&
 *
 RANDOMIZ         1.0    145789
-START        5000000.0
+START      5000000.0
 STOP

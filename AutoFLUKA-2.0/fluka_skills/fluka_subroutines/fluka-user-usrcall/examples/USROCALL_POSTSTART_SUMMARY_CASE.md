@@ -15,19 +15,19 @@ A shielding case with `USRTRACK` detectors writes unformatted fluence to unit 24
 ```text
 TITLE
 Shielding run with post-START USROUT summary
-DEFAULTS         SHIELDIN         0.0
+DEFAULTS                                                              SHIELDIN
 
 * Open track file unit in init (see USRCALL_SOURCE_SPECTRUM_INIT_CASE for USRINI OPEN pattern)
-USRICALL      24.0   0.0   0.0   0.0   0.0   0.0   OPENTRK
+USRICALL        24.0       0.0       0.0       0.0       0.0       0.0OPENTRK
 
-USRTRACK      1.0   NEUTRON   -24.0   10.0   1000.0   50.   DetNeut
-USRTRACK      0.0   0.001   0.0   0.0   0.0   0.0   &
+USRTRACK         1.0   NEUTRON     -24.0      10.0    1000.0       50.DetNeut
+USRTRACK         0.0     0.001       0.0       0.0       0.0       0.0&
 
 PHYSICS        ...
 START          5.0E5
 
 * Only USROCALL and STOP are read after START (manual Sec. 7.1.7)
-USROCALL       24.0   50.0   10.0   0.0   0.0   0.0   SUMMARY
+USROCALL        24.0      50.0      10.0       0.0       0.0       0.0SUMMARY
 
 STOP
 ```
@@ -89,7 +89,7 @@ Placing `USROCALL` before `START` would call `USROUT` **before** transport — w
 
 | Step | Action |
 |---|---|
-| 1 | Run `START 1.0E3` test |
+| 1 | Run a test with `START` WHAT(1) = 1000.0 (written with `fluka_card_formatter_tool`) |
 | 2 | Confirm `detneut24.unf` exists and has non-zero size |
 | 3 | Confirm summary block appears **after** transport section in output |
 | 4 | Run `ustsuw` on unit-24 file as production step |

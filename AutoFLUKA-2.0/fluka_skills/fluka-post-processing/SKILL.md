@@ -14,19 +14,19 @@ Use verified FLUKA outputs to build structured analysis products without changin
 - Generate minimal reproducible technical reports in Markdown when the user asks for a report-ready summary of completed simulations.
 - Keep reusable analysis routines modular and easy to contribute.
 
-## Contribution areas
-- `scripts/` for reusable code assets (optional).
-- `technical_reporting/` for report-generation guidance and templates.
+## Statistics and uncertainty interpretation (decrypt/summary outputs)
+- A per-cycle `_sum.lis` uncertainty from a single FLUKA cycle (N=1) is **not a measured error bar** — it is FLUKA's own undefined-statistic placeholder, not a bug in AutoFLUKA's decrypt tooling. Variance can only be computed from batch-to-batch spread across ≥2 independent cycles. Per FLUKA's own training material (*Monte Carlo Basics*, ULB course, May 2022, slide 28): "if you run just one cycle (N=1), the above expression cannot be evaluated and FLUKA will return 100% uncertainty."
+- Never read or report a *per-cycle* `_sum.lis` uncertainty as a meaningful result. Only the combined multi-cycle summary carries a real uncertainty, and only once ≥2 cycles exist.
+- Recommended minimum: 5-10 cycles of comparable size (same source material's own recommendation, slide 29) before trusting a reported uncertainty.
+- Quality-of-result guideline by relative error (MCNP-derived, broadly applicable across codes, slide 30): ≥50% = garbage, 20-50% = factor of a few, 10-20% = questionable, <10% = generally reliable. Flag a result as statistically insufficient rather than reporting whatever number comes out when the relative error falls outside the reliable band.
 
-## Boundaries
-- This folder extends analysis capability.
-- It must not redefine the core authoring or execution flow.
+## Area and volume normalization (check before reporting fluence)
+- FLUKA does not compute detector areas or volumes. A `USRBDX` result is per cm² only if WHAT(6) held the true boundary area; a `USRTRACK` result is fluence only if WHAT(5) held the true region volume. Both default to 1.0, which gives results integrated over the detector.
+- Before reporting a per-cm² value, read the area/volume FLUKA used from the `.out` file (e.g. `detector area: 1.0000E+00 cm**2`). If it is 1.0 but the detector is not 1 cm², divide by the true area/volume (e.g. 4πr² for a sphere boundary) and state that you did.
+- Do not normalize twice: if the card already held the true area, the output is already per cm².
 
-## Policy
-- Do not overwrite raw FLUKA outputs.
-- Prefer small reusable recipes and scripts over one large monolithic analysis module.
-- Add reusable code assets under `scripts/` only when needed.
-- Put report-generation assets under a dedicated `technical_reporting/` subfolder so they remain distinct from numerical post-processing logic.
+## Multi-configuration analysis
+- Do not pool outputs from multiple distinct configurations of the same case (e.g. with/without a degrader, different target thicknesses) into one decrypt/report pass. Segregate by configuration — decrypt and analyze each one on its own, even when they share a scorer layout — so a configuration-dependent effect isn't averaged away or misattributed.
 
 ## Technical reporting recipe (summary)
 - Use technical reporting when the user asks for a simulation report after execution and analysis are complete.
@@ -73,3 +73,17 @@ Use verified FLUKA outputs to build structured analysis products without changin
 8. Reproducibility notes (incl. lessons learned)
 9. Conclusion
 10. References
+
+## Policy
+- Do not overwrite raw FLUKA outputs.
+- Prefer small reusable recipes and scripts over one large monolithic analysis module.
+- Add reusable code assets under `scripts/` only when needed.
+- Put report-generation assets under a dedicated `technical_reporting/` subfolder so they remain distinct from numerical post-processing logic.
+
+## Boundaries
+- This folder extends analysis capability.
+- It must not redefine the core authoring or execution flow.
+
+## Contribution areas
+- `scripts/` for reusable code assets (optional).
+- `technical_reporting/` for report-generation guidance and templates.

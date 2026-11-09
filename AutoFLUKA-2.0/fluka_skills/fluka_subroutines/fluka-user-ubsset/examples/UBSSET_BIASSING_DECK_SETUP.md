@@ -14,16 +14,16 @@ Adapted from manual `BIASING` examples (p. 89).
 
 ```text
 * --- Electromagnetic importance in detector shells ---
-BIASING     2.0     0.0    10.0     7.0    11.0     2.0
+BIASING          2.0       0.0      10.0       7.0      11.0       2.0
 
 * --- Higher e/g importance in inner detector slice ---
-BIASING     2.0     0.0    15.0     8.0     9.0     0.0
+BIASING          2.0       0.0      15.0       8.0       9.0       0.0
 
 * --- Hadron multiplicity reduction + base importance (override in UBSSET) ---
-BIASING     1.0     0.7     0.4     3.0     8.0     0.0    PRINT
+BIASING          1.0       0.7       0.4       3.0       8.0       0.0PRINT
 
 * --- Apply importance biasing to primaries too ---
-BIASING    -1.0     0.0     0.0     0.0     0.0     0.0    PRIMARY
+BIASING         -1.0       0.0       0.0       0.0       0.0       0.0PRIMARY
 ```
 
 ### Reading the lines
@@ -40,8 +40,8 @@ BIASING    -1.0     0.0     0.0     0.0     0.0     0.0    PRIMARY
 Name-based equivalent (manual p. 89):
 
 ```text
-BIASING     2.0     0.0    10.0   Seventh  Eleventh     2.0
-BIASING     1.0     0.7     0.4    Third    Eighth       0.0    PRINT
+BIASING          2.0       0.0      10.0   Seventh  Eleventh       2.0
+BIASING          1.0       0.7       0.4     Third    Eighth       0.0PRINT
 ```
 
 ## `UBSSET` role in this case

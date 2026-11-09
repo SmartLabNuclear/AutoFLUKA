@@ -100,7 +100,7 @@ Per manual §13.2.7, `FLUSCW` weights:
 Detector-checked fluence weighting:
 
 ```text
-USERWEIG     0.0     0.0     4.0     0.0     0.0     0.0
+USERWEIG         0.0       0.0       4.0       0.0       0.0       0.0
 ```
 
 `FLUSCW` called only when the present score applies to the current detector.
@@ -108,7 +108,7 @@ USERWEIG     0.0     0.0     4.0     0.0     0.0     0.0
 Unconditional `COMSCW` example (shown for contrast — uses `WHAT(6)`, not `WHAT(3)`):
 
 ```text
-USERWEIG     0.0     0.0     0.0     0.0     0.0     1.0
+USERWEIG         0.0       0.0       0.0       0.0       0.0       1.0
 ```
 
 ## Input-card syntax and required deck checks

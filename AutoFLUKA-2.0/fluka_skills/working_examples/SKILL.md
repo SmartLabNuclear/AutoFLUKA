@@ -22,6 +22,8 @@ One folder per FLUKA example. Each folder contains a canonical `.inp` and a shor
 - `proton_70mev_water_sphere_5cm_air_multiscoring/` - 70 MeV proton beam in air on a centered 5 cm-radius water sphere, with dose, track-length, boundary, and energy-deposition scoring.
 - `pion_fluence_current_beryllium_2slabs/` - 50 GeV proton beam on a two-slab beryllium target with pion interface fluence/current (USRBDX), slab-wise pion fluence (USRTRACK), and 3D pion/energy maps (USRBIN).
 - `pion_fluence_current_beryllium_3slabs/` - PION+ beam on a three-slab beryllium target with slab-wise/surrounding fluence (USRTRACK) and entrance/interface/exit boundary current (USRBDX).
-- `neutron_1mev_point_source_water_cube_10cm_air_multiscoring/` - 1 MeV monoenergetic neutron point-source in air on a centered 10 cm water cube, with USRTRACK, USRBDX, and USRBIN dose/energy scoring.
+- `neutron_1mev_point_source_water_cube_10cm_air_multiscoring/` - 1 MeV monoenergetic neutron point-source in air on a centered 5 cm water cube (folder name says 10 cm), with USRTRACK, USRBDX, and USRBIN dose/energy scoring.
 - `neutron_245mev_point_source_water_cube_air_multiscoring/` - 2.45 MeV monoenergetic neutron point-source in air irradiating a 10 cm water cube, with USRTRACK, USRBDX, and USRBIN dose/energy scoring.
 - `neutron_45mev_point_source_water_cube_5cm_air_multiscoring/` - 4.5 MeV monoenergetic neutron point-source at z=-30 cm irradiating a 5 cm water cube, with USRTRACK, USRBDX, and USRBIN dose/energy scoring.
+- `photon_1mev_lead_slab/` - 1 MeV photon pencil beam on a 2 cm lead slab in vacuum, with dose/energy meshes, track-length fluence and boundary fluence (true volume and area set in the cards).
+- `photon_3mev_iso_pb_sphere/` - 3 MeV isotropic photon point source at the centre of a 5 cm lead sphere, made isotropic with `BEAM` WHAT(3) = 10000 mrad (no `SOURCE` routine); isotropy verified on a symmetric energy mesh.

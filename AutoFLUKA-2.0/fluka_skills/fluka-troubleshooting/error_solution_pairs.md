@@ -42,9 +42,10 @@
   - `EMFCUT ... PROD-CUT` line has missing or zero `WHAT(3)`.
 - Suggested Fix:
   - Set positive `WHAT(3)` on the PROD-CUT EMFCUT line and rerun the next low-statistics `test-n` attempt.
-  - Example project convention:
+  - Example project convention (every value ends at column 20/30/40; PROD-CUT starts at column 71):
     ```text
-    EMFCUT    -1.0E-05   1.0E-05   1.0E-05                              PROD-CUT
+    *...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+    EMFCUT      -1.0E-05   1.0E-05   1.0E-05                              PROD-CUT
     ```
 - Confidence: 0.90
 - Logged: 2026-03-09
@@ -111,14 +112,19 @@
   - FLUKA fails to parse the `START` line after an edit.
   - A long numeric literal spills into the next fixed-format field.
 - Typical cause:
-  - `START` value exceeds expected field width or is misaligned for the active input style.
+  - The NPS does not end at column 20, so part of it falls into WHAT(2). FLUKA reads only columns 11-20 for WHAT(1) and accepts the fragment without complaint: `START          100000.0` (columns 16-23) ran **10,000** primaries per cycle in a real run, and `START          500000.0` ran 50,000.
+  - A value starting at column 10 (inside the keyword field) leaves WHAT(1) as 0, so FLUKA silently runs its default (5,000).
   - A `test-n` low-NPS value was accidentally propagated into production copies.
 - Suggested Fix:
-  - Use compact scientific notation and keep the line parser-safe.
+  - Rewrite the card so the NPS ends exactly at column 20, preferably with `fluka_card_formatter_tool`. Decimal or exponent both work once right-aligned.
+  - After any production run, compare `Total number of primaries run:` in each `.out` with the requested NPS before reporting statistics.
   - Before seeded production runs, restore the intended production NPS after a `test-n` attempt succeeds.
   - Example:
     ```text
-    START        1.0E+06
+    *...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+    START      1000000.0
+    START       100000.0
+    START        1.0E+05
     ```
 - Confidence: 0.84
 - Logged: 2026-03-09
@@ -336,7 +342,8 @@
   - Do not assume every compound requires `POTASSIU`; define whichever constituent FLUKA reports as missing.
   - Example:
     ```text
-    MATERIAL         19.    39.0983     0.862                              POTASSIU
+    *...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+    MATERIAL         19.   39.0983     0.862                              POTASSIU
     ```
 - Confidence: 0.90
 - Logged: 2026-04-29
@@ -358,7 +365,8 @@
   - Keep the corrected `MATERIAL`/`COMPOUND` definition stable before changing scoring cards.
   - Example corrected pattern:
     ```text
-    MATERIAL                                                  CONCRETE
+    *...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+    MATERIAL                                                              CONCRETE
     ```
 - Confidence: 0.95
 - Logged: 2026-04-29
@@ -468,16 +476,22 @@
   - `The 2th field ... START`
   - `START        1000.         0`
 - Typical cause:
-  - A generated low-NPS preflight cap was written as an integer (`START          1000`) instead of an explicit Fortran real.
-  - A generated or repaired `START` card used an integer-like second field such as `0` where the installed FLUKA parser expected a formatted real value.
-  - The test-run NPS cap was correct, but the START fields were not written with parser-safe real formatting.
+  - The NPS does not end at column 20. `START          1000` ends at column 19, so it is an integer followed by a blank: rejected. `START          1000.0` ends at column 21, so its last `0` lands in WHAT(2) as an integer followed by blanks: rejected ("The 2th field 0").
+  - `START       1.0E+03` ends at column 19 (an exponent followed by a blank): rejected. The notation is not the cause; a right-aligned `START        1.0E+03` runs fine (verified with the installed FLUKA).
+  - The test-run NPS cap was correct, but the card was spaced by hand.
 - Suggested Fix:
-  - Rewrite low-statistics preflight `START` with an explicit real-valued primary count, preferably scientific notation, while preserving the bounded `test-n` NPS limit.
-  - Avoid adding unnecessary integer-like extra WHAT fields when only the primary count is being changed.
-  - For production runs, restore the requested production NPS using the same real-valued fixed-width style.
+  - Rewrite the card with `fluka_card_formatter_tool` so the NPS ends exactly at column 20. Decimal, integer and exponent forms all work once right-aligned.
+  - Avoid adding extra WHAT fields when only the primary count is being changed.
+  - For production runs, restore the requested production NPS the same way, and check `Total number of primaries run:` in the `.out` afterwards (a value spilling into WHAT(2) can also run silently with the wrong count; see "START card numeric field overflow or misread NPS").
   - Example:
     ```text
-    START          1.0E3
+    *...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+    * correct (decimal and exponent, both ending at column 20):
+    START         1000.0
+    START        1.0E+03
+    * rejected (the first ends at column 21, the second at column 19):
+    START          1000.0
+    START       1.0E+03
     ```
 - Confidence: 0.90
 - Logged: 2026-04-30
@@ -603,7 +617,7 @@
     RANDOMIZ          1.         7
     RANDOMIZ          1.         8
     RANDOMIZ          1.         9
-    RANDOMIZ          1.         10.
+    RANDOMIZ          1.       10.
     ```
 - Confidence: 0.90
 - Logged: 2026-05-24

@@ -14,19 +14,18 @@ A user scores **total energy density** in a Cartesian mesh over a phantom with `
 
 ### USRBIN energy-density scoring (conceptual)
 
-Two-card `USRBIN` pattern (verify `WHAT(1)` for energy density against installed manual):
+Two-card `USRBIN` pattern (Cartesian energy-density mesh):
 
 ```text
-USRBIN           10.0       208.0       -50.0
-               -50.0       -50.0         0.0
-                50.0        50.0        50.0       50.0        50.0        50.0
+USRBIN          10.0    ENERGY     -50.0      50.0      50.0      50.0EDEN
+USRBIN         -50.0     -50.0       0.0      50.0      50.0      50.0&
 ```
 
 Checks:
 
-- `WHAT(1)` selects **energy density** scoring mode (manual default reference `208.0` for total energy density — confirm for your version).
-- Second card defines mesh extents and bin counts.
-- Output unit `10` is an example only.
+- First card: `WHAT(1)` = `10.0` selects a Cartesian mesh, `WHAT(2)` = `ENERGY` (particle code 208) scores total energy density, `WHAT(3)` = `-50.0` is the output unit (negative = binary), `WHAT(4..6)` = mesh maxima.
+- Second card: `WHAT(1..3)` = mesh minima, `WHAT(4..6)` = bin counts, `SDUM` = `&`.
+- Every value is right-aligned in its 10-column field (see `fluka-authoring/rules/fortran_columns.md`).
 
 ### Activation card
 

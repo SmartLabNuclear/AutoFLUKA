@@ -27,7 +27,7 @@ Checklist before finalising the deck:
 1. BEAMPOS point is inside a **transport region** (not BLCKHOLE, not outside the outermost body).
 2. BEAMAXES direction cosines (WHAT 1–3) point **from source toward target**.
 3. The beam traverses the intended target depth — a source inside or behind the target deposits dose at the wrong location and defeats depth-dose or Bragg-peak objectives.
-4. For a pencil beam along +z incident on a phantom at z = 0–30 cm, a BEAMPOS of (0, 0, −5) and BEAMAXES (0, 0, 1, 1, 0, 0) is a safe starting template.
+4. For a pencil beam along +z incident on a phantom at z = 0–30 cm, a BEAMPOS of (0, 0, −5) and BEAMAXES (0, 0, 1, 1, 0, 0) is one example for *that specific* geometry — **not a universal template to copy into other cases.** An audit of `working_examples/` found this exact card copy-pasted into 14 of 17 files regardless of their actual geometry, and in 4 of those the beam missed the target entirely as a result. Always re-derive BEAMPOS/BEAMAXES from the case's own source and target placement, and when in doubt, verify with a trivial-NPS probe run reading `Beam direction in the geometry frame` / `Beam hit position` from the `.out` log rather than assuming a prior example's values transfer.
 
 ## Geometry block structure
 - Start with `GEOBEGIN ... COMBNAME`.
@@ -38,6 +38,16 @@ Checklist before finalising the deck:
 
 ## Geometry “recipes” (authoring shortcuts that avoid axis confusion)
 Use these as deterministic templates when the user describes shapes in words.
+
+### Outer boundary and filler medium rule (CRITICAL)
+- The outermost region is **always `BLCKHOLE`** — standard FLUKA requirement, not case-specific.
+- Between the target and that outer boundary, the default filler is **`VACUUM`**, full stop — unless the case explicitly calls for air as the surrounding medium (e.g. skyshine, facility/room-return physics). Do not reach for `AIR` as a default "safe" filler and do not try to size an air buffer/margin to avoid side effects: a target can legitimately share a boundary with air with no safe margin to compute, and an oversized air region has caused real scoring bugs (boundary-crossing tallies like `USRBDX` double-counting side-wall leakage and re-captured backscatter). Use `VACUUM` and the problem doesn't arise.
+- "Blackhole outermost, vacuum filler by default" — if the user's case doesn't name air as part of the physics, don't introduce it.
+
+### “Vacuum box + blackhole” outer boundary (default shape)
+- Make one large `WORLD` box and a smaller `FILLBOX`.
+- Create a `BH` region as `+WORLD -FILLBOX`, assign `BLCKHOLE` to it.
+- Put all simulation content inside `FILLBOX` and subtract solids as needed; assign `VACUUM` to whatever of `FILLBOX` is left after subtracting target/detector solids, unless the case explicitly requires `AIR` there instead.
 
 ### Cylinder aligned with +z (typical beamline component)
 - Use `RCC` with its axis vector pointing along **z**:
@@ -58,11 +68,6 @@ RCC CYL1       x0 y0 z0   0.0 0.0 L    R
 RPP BOX1       Xmin Xmax  Ymin Ymax  Zmin Zmax
 ```
 
-### “Air box + blackhole” outer boundary
-- Make one large `WORLD` box and a smaller `AIRBOX`.
-- Create a `BH` region as `+WORLD -AIRBOX`, assign `BLCKHOLE` to it.
-- Put all simulation content inside `AIRBOX` and subtract solids as needed.
-
 ## Region expression rules
 - `+BODY` means inside, `-BODY` means outside.
 - Use `|` for union when needed.
@@ -74,8 +79,7 @@ RPP BOX1       Xmin Xmax  Ymin Ymax  Zmin Zmax
 ## Region hierarchy guidance
 - Typical robust stack:
   - outer boundary (`BLCKHOLE`)
-  - vacuum shell
-  - ambient region (`AIR`)
+  - filler region (`VACUUM` by default; `AIR` only if the case explicitly requires it — see "Outer boundary and filler medium rule" above)
   - target/detector regions
 - Order and boolean signs must make regions non-overlapping unless intentionally shared.
 

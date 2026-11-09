@@ -27,8 +27,9 @@ Conceptual excerpt (ellipses mark omitted bodies/regions):
 
 ```text
 * --- Roto-translation: shift (0, -2, -30) then rotation -21 deg about x ---
-ROT-DEFI    0.0    -2.0   -30.0   Rotdefi1
-ROT-DEFI    100.   -21.           Rotdefi1
+* Shift in WHAT(4..6); rotation: WHAT(1)=100. (x axis), azimuthal angle in WHAT(3)
+ROT-DEFI                                       0.0      -2.0     -30.0Rotdefi1
+ROT-DEFI        100.       0.0      -21.                              Rotdefi1
 
 * --- Replica body built under inverse transform directive ---
 $Start_transform

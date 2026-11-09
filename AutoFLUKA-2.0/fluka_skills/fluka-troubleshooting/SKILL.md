@@ -44,7 +44,7 @@ Ignore `AutoFLUKA_job*.log` by default unless diagnosing launcher/tool failure. 
 
 ## Test-run rule
 - Before seeded or production execution, run a copied `.inp` in `test-1/` with low primaries (`START`/NPS must be `<=1000`).
-- Low-primary `START` edits must use explicit real formatting, not integers; use forms such as `START          1.0E3`.
+- Low-primary `START` edits must keep the NPS ending exactly at column 20: `START         1000.0` or `START        1.0E+03`. A value one column off is rejected ("The 2th field 0 … not a valid formatted fortran real number") or silently misread. Most "not a valid formatted fortran real number" errors are misplaced values, not wrong notation: rewrite the whole card with `fluka_card_formatter_tool` instead of nudging spaces.
 - If `test-1` fails and one bounded fix is applied, place the corrected input in a fresh `test-2/`; continue as `test-3/`, etc.
 - Diagnose only the active `test-n` folder unless the user explicitly asks to compare old attempts.
 - Only after a clean `test-n` attempt should AutoFLUKA generate seeded copies and run the requested production batch.
