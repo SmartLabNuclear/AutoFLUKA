@@ -5,10 +5,17 @@
 # see Part 2 of the README).
 #
 # Quick start:
+#   ./start.sh                       start in background, auto-detects GPU
+#                                     (see docker-compose.gpu.yml) -- recommended
+#   ./autofluka_cli_chat.sh          start (if needed) and chat from the terminal
 #   docker compose up -d             start in background (pulls the image automatically)
 #   docker compose logs -f           follow live logs
 #   docker compose down              stop and remove the container
 #   docker compose up -d --pull always   pull the latest image and restart
+#
+# Run ./start.sh and ./autofluka_cli_chat.sh from WSL/Linux, not PowerShell --
+# same requirement as plain `docker compose up -d` whenever FLUKA execution
+# mode is enabled (see the FLUKA execution note further down).
 #
 # To pin a specific build instead of the rolling `latest` tag, change the
 # `image:` line below to a dated tag, e.g. `zev94/autofluka-2.0:2026-11-09`,
